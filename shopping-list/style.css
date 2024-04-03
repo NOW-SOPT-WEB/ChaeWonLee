@@ -1,1 +1,146 @@
 @import "reset.css";
+
+body {
+    background-color: #FAF3F0;
+}
+
+.header{
+    width: 100%;
+    height: 6rem; /* 110px / 16px = 6.875rem */
+    background-color: #FFCACC;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding-left: 3.75rem; /* 60px / 16px = 3.75rem */
+    padding-right: 3.75rem; /* 60px / 16px = 3.75rem */
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+}
+
+.header-title{
+    font-size: 3rem; /* 48px / 16px = 3rem */
+    text-align: center; 
+    color: white;
+    text-shadow: 
+    -0.2rem -0.2rem 0 #FFAEB1,  /* -3px / 16px = -0.1875rem */
+    0.2rem -0.2rem 0 #FFAEB1,
+    -0.2rem  0.2rem 0 #FFAEB1,
+    0.2rem  0.2rem 0 #FFAEB1;
+}
+
+.header-symbol{
+    width:4rem; /* 70px / 16px = 4.375rem */
+    height: 4rem; /* 70px / 16px = 4.375rem */
+}
+
+.header-menu{
+    width:4rem; /* 70px / 16px = 4.375rem */
+    height: 4rem; /* 70px / 16px = 4.375rem */
+}
+
+nav{
+    width:15rem;
+    height:35rem;
+    border-radius: 3.125rem;
+    background-color: #DBC4F0;
+    flex-direction: column;
+    display:flex;
+    position: fixed;
+    top: 10rem;
+    align-items: center;
+
+}
+
+.main-content {
+    margin-top: 10rem;
+    margin-left: 20rem; /* 네비게이션과의 간격 */
+}
+
+.footer {
+    /* 푸터 스타일 */
+    width: 100%; /* 전체 너비 사용 */
+    margin-top: 1rem; /* 상단 여백 추가 */
+}
+
+nav > h2 {
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    margin-top: 2.5rem;
+
+}
+
+nav > ul > li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem;
+    height: 3.5rem;
+    border-radius: 0.8rem;
+    background-color: white;
+    margin-top: 2.7rem;
+}
+
+li > a {
+    font-size: 2rem;
+    text-align: center;
+    color: #D4E2D4;
+}
+
+.banner {
+    position:relative;
+    display: flex;
+    align-items: center;
+    margin:0;
+    width: 68rem;
+    height: 10rem;
+    overflow: hidden;
+
+}
+
+.banner > ul {
+    position: absolute;
+    display: flex;
+    gap: 0 3rem;
+    width: max-content;
+    animation: aniScroll 15s linear infinite;
+} 
+
+.banner > ul.n2 {
+    animation: aniScroll-2 15s linear infinite;
+}
+
+.banner > ul.n2 > li:first-child {
+    margin-left: 3rem; /* 좌측 여백을 주고 싶은 경우 */
+}
+
+
+
+.banner > ul > li > img{
+    width: 9rem;
+    height: 9rem;
+    border-color: #DBC4F0;
+    border-radius: 2rem;
+    border-width: 0.5rem;
+    border-style: solid;
+}
+
+@keyframes aniScroll {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes aniScroll-2 {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+

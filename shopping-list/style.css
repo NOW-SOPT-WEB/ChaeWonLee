@@ -6,37 +6,38 @@ body {
 
 .header{
     width: 100%;
-    height: 6rem; /* 110px / 16px = 6.875rem */
+    height: 6rem; 
     background-color: #FFCACC;
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    padding-left: 3.75rem; /* 60px / 16px = 3.75rem */
-    padding-right: 3.75rem; /* 60px / 16px = 3.75rem */
+    padding-left: 3.75rem; 
+    padding-right: 3.75rem; 
     box-sizing: border-box;
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 
 .header-title{
-    font-size: 3rem; /* 48px / 16px = 3rem */
+    font-size: 3rem; 
     text-align: center; 
     color: white;
     text-shadow: 
-    -0.2rem -0.2rem 0 #FFAEB1,  /* -3px / 16px = -0.1875rem */
+    -0.2rem -0.2rem 0 #FFAEB1,  
     0.2rem -0.2rem 0 #FFAEB1,
     -0.2rem  0.2rem 0 #FFAEB1,
     0.2rem  0.2rem 0 #FFAEB1;
 }
 
 .header-symbol{
-    width:4rem; /* 70px / 16px = 4.375rem */
-    height: 4rem; /* 70px / 16px = 4.375rem */
+    width:4rem; 
+    height: 4rem;
 }
 
 .header-menu{
-    width:4rem; /* 70px / 16px = 4.375rem */
-    height: 4rem; /* 70px / 16px = 4.375rem */
+    width:4rem; 
+    height: 4rem; 
 }
 
 nav{
@@ -52,17 +53,20 @@ nav{
 
 }
 
+
+/* footer */
+.footer {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* main */
 .main-content {
     margin-top: 10rem;
-    margin-left: 20rem; /* 네비게이션과의 간격 */
+    margin-left: 20rem;
 }
 
-.footer {
-    /* 푸터 스타일 */
-    width: 100%; /* 전체 너비 사용 */
-    margin-top: 1rem; /* 상단 여백 추가 */
-}
-
+/* nav */
 nav > h2 {
     font-size: 2rem;
     color: white;
@@ -82,18 +86,20 @@ nav > ul > li {
     margin-top: 2.7rem;
 }
 
-li > a {
+nav > ul > li > a {
     font-size: 2rem;
     text-align: center;
     color: #D4E2D4;
 }
+
+/* banner */
 
 .banner {
     position:relative;
     display: flex;
     align-items: center;
     margin:0;
-    width: 68rem;
+    width: 67rem;
     height: 10rem;
     overflow: hidden;
 
@@ -112,7 +118,7 @@ li > a {
 }
 
 .banner > ul.n2 > li:first-child {
-    margin-left: 3rem; /* 좌측 여백을 주고 싶은 경우 */
+    margin-left: 3rem; 
 }
 
 
@@ -143,4 +149,63 @@ li > a {
         transform: translateX(0%);
     }
 }
+
+
+.box {
+    margin-top: 2.3rem;
+}
+
+/* section all */
+section > h2 {
+    font-size: 2rem;
+    color: #FDA0A4;
+}
+
+.item-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 14rem;
+    height: 19rem;
+    background-color: #D4E2D4;
+    border-radius: 2.5rem;
+}
+
+.item-box img:nth-of-type(1){
+    width: 9rem;
+    height: 9.2rem;
+    border-color: #FDA0A4;
+    border-radius: 1rem;
+    border-width: 0.3rem;
+    border-style: solid;
+    margin-top: 1.4rem;
+}
+
+.item-box img:nth-of-type(2){
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0.8rem;
+}
+
+.item-box > h2{
+    font-size: 1.6rem;
+    color: #FDA0A4;
+    text-align: center;
+    margin-top: 0.3rem;
+}
+
+.item-box > p {
+    font-size: 1.6rem;
+    color: #FDA0A4;
+    text-align: center;
+}
+
+.items {
+    display: grid;
+    width: 70rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; /* 원하는 간격으로 조정 */
+    margin-top: 1.2rem;
+}
+
 

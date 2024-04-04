@@ -104,6 +104,14 @@ nav > ul > li > a {
     text-decoration: none;
 }
 
+nav > ul > li:hover {
+    background-color: #D4E2D4; 
+}
+
+nav > ul > li:hover > a {
+    color: #FFFFFF;
+}
+
 /* banner */
 
 .banner {
@@ -185,6 +193,8 @@ section > h2 {
     border-radius: 1.5rem;
     margin-right: 2rem;
     margin-bottom: 1rem;
+
+    transition: transform 0.5s ease;
 }
 
 
@@ -198,11 +208,19 @@ section > h2 {
     margin-top: 1.4rem;
 }
 
-.item-box img:nth-of-type(2){
-    width: 1.3rem;
-    height: 1.3rem;
+.fas.fa-heart {
     margin-top: 0.8rem;
+    font-size: 1.3rem; 
+    color: #898989;
 }
+
+.fas.fa-heart:hover {
+    margin-top: 0.8rem;
+    font-size: 1.3rem; 
+    color: #FDA0A4;
+}
+
+
 
 .item-box > h2{
     font-size: 1.2rem;
@@ -221,26 +239,46 @@ section > h2 {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     margin-top: 1.2rem;
+    padding-right: 5rem;
 }
 
-  
 
-/* 화면 크기가 1024px 이하일 때, 아이템 4개로 조정 */
+/* 애니메이션 키 프레임 정의 */
+@keyframes pulseAnimation {
+    0% {
+        transform: scale(1); 
+    }
+    50% {
+        transform: scale(1.05); 
+    }
+    100% {
+        transform: scale(1); 
+    }
+}
+
+.item-box:hover {
+    animation: pulseAnimation 1s infinite ease-in-out; 
+}
+
+
+
+
+
 @media (max-width: 1300px) {
     .items {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-/* 화면 크기가 768px 이하일 때, 아이템 3개로 조정 */
+
 @media (max-width: 1200px) {
     .items {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* 화면 크기가 480px 이하일 때, 아이템 2개로 조정 */
-@media (max-width: 900px) {
+
+@media (max-width: 950px) {
     .items {
         grid-template-columns: repeat(2, 1fr);
         column-gap: 2rem;
@@ -259,8 +297,8 @@ section > h2 {
     }
 }
 
-/* 화면 크기가 320px 이하일 때, 아이템 1개로 조정 */
-@media (max-width: 700px) {
+
+@media (max-width: 750px) {
     .items {
         grid-template-columns: repeat(1, 1fr);
         column-gap: 2rem;

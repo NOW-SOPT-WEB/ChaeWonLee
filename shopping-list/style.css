@@ -55,10 +55,21 @@ nav{
 
 
 /* footer */
-.footer {
+footer {
     width: 100%;
     margin-top: 1rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFCACC;
 }
+
+footer > h1 {
+    font-size: 2rem;
+    color: white;
+}
+
 
 /* main */
 .main-content {
@@ -90,6 +101,7 @@ nav > ul > li > a {
     font-size: 2rem;
     text-align: center;
     color: #D4E2D4;
+    text-decoration: none;
 }
 
 /* banner */
@@ -150,6 +162,9 @@ nav > ul > li > a {
     }
 }
 
+section { 
+    scroll-margin-top: 7rem; 
+}
 
 .box {
     margin-top: 2.3rem;
@@ -165,15 +180,17 @@ section > h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 14rem;
-    height: 19rem;
+    height: 16.3rem;
     background-color: #D4E2D4;
-    border-radius: 2.5rem;
+    border-radius: 1.5rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
 }
 
+
 .item-box img:nth-of-type(1){
-    width: 9rem;
-    height: 9.2rem;
+    width: 8rem;
+    height: 8.2rem;
     border-color: #FDA0A4;
     border-radius: 1rem;
     border-width: 0.3rem;
@@ -182,30 +199,83 @@ section > h2 {
 }
 
 .item-box img:nth-of-type(2){
-    width: 2rem;
-    height: 2rem;
+    width: 1.3rem;
+    height: 1.3rem;
     margin-top: 0.8rem;
 }
 
 .item-box > h2{
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     color: #FDA0A4;
     text-align: center;
     margin-top: 0.3rem;
 }
 
 .item-box > p {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     color: #FDA0A4;
     text-align: center;
 }
 
 .items {
     display: grid;
-    width: 70rem;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem; /* 원하는 간격으로 조정 */
+    grid-template-columns: repeat(5, 1fr);
     margin-top: 1.2rem;
 }
 
+  
+
+/* 화면 크기가 1024px 이하일 때, 아이템 4개로 조정 */
+@media (max-width: 1300px) {
+    .items {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* 화면 크기가 768px 이하일 때, 아이템 3개로 조정 */
+@media (max-width: 1200px) {
+    .items {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 화면 크기가 480px 이하일 때, 아이템 2개로 조정 */
+@media (max-width: 900px) {
+    .items {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+    .item-box {
+        width: 100%;
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 16.3rem;
+    background-color: #D4E2D4;
+    border-radius: 1.5rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    
+    }
+}
+
+/* 화면 크기가 320px 이하일 때, 아이템 1개로 조정 */
+@media (max-width: 700px) {
+    .items {
+        grid-template-columns: repeat(1, 1fr);
+        column-gap: 2rem;
+    }
+    .item-box {
+        width: 100%;
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 16.3rem;
+    background-color: #D4E2D4;
+    border-radius: 1.5rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    
+    }
+}
 

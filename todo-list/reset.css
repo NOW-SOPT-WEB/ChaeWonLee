@@ -21,6 +21,9 @@ time, mark, audio, video {
 	font-size: 100%;
 	font-family: "BM";
 	vertical-align: baseline;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(#87E6FF, #B7FFBE);
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 

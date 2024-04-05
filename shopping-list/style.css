@@ -30,14 +30,9 @@ body {
     0.2rem  0.2rem 0 #FFAEB1;
 }
 
-.header-symbol{
+.header-symbol, .header-menu{
     width:4rem; 
     height: 4rem;
-}
-
-.header-menu{
-    width:4rem; 
-    height: 4rem; 
 }
 
 /* footer */

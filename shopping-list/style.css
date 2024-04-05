@@ -40,20 +40,6 @@ body {
     height: 4rem; 
 }
 
-nav{
-    width:15rem;
-    height:35rem;
-    border-radius: 3.125rem;
-    background-color: #DBC4F0;
-    flex-direction: column;
-    display:flex;
-    position: fixed;
-    top: 10rem;
-    align-items: center;
-
-}
-
-
 /* footer */
 footer {
     width: 100%;
@@ -71,13 +57,20 @@ footer > h1 {
 }
 
 
-/* main */
-.main-content {
-    margin-top: 10rem;
-    margin-left: 20rem;
+/* nav */
+nav{
+    width:15rem;
+    height:35rem;
+    border-radius: 3.125rem;
+    background-color: #DBC4F0;
+    flex-direction: column;
+    display:flex;
+    position: fixed;
+    top: 10rem;
+    align-items: center;
+
 }
 
-/* nav */
 nav > h2 {
     font-size: 2rem;
     color: white;
@@ -113,6 +106,11 @@ nav > ul > li:hover > a {
 }
 
 /* banner */
+/* main */
+.main-content {
+    margin-top: 10rem;
+    margin-left: 20rem;
+}
 
 .banner {
     position:relative;
@@ -152,6 +150,7 @@ nav > ul > li:hover > a {
     border-style: solid;
 }
 
+/* 무한 스크롤 */
 @keyframes aniScroll {
     from {
         transform: translateX(0%);
@@ -170,6 +169,7 @@ nav > ul > li:hover > a {
     }
 }
 
+/*section*/
 section { 
     scroll-margin-top: 7rem; 
 }
@@ -178,7 +178,6 @@ section {
     margin-top: 2.3rem;
 }
 
-/* section all */
 section > h2 {
     font-size: 2rem;
     color: #FDA0A4;
@@ -238,11 +237,15 @@ section > h2 {
     grid-template-columns: repeat(5, 12rem);
     gap: 2rem;
     margin-top: 1.2rem;
-    /*padding-right: 5rem;*/
+    padding-right: 3rem;
+}
+
+.item-box:hover {
+    animation: pulseAnimation 1s infinite ease-in-out; 
 }
 
 
-/* 애니메이션 키 프레임 정의 */
+/* 애니메이션 */
 @keyframes pulseAnimation {
     0% {
         transform: scale(1); 
@@ -255,14 +258,7 @@ section > h2 {
     }
 }
 
-.item-box:hover {
-    animation: pulseAnimation 1s infinite ease-in-out; 
-}
-
-
-
-
-
+/* 반응형 */
 @media (max-width: 1400px) {
     .items {
         grid-template-columns: repeat(4, 12rem);
@@ -277,26 +273,33 @@ section > h2 {
 }
 
 
-@media (max-width: 950px) {
+@media (max-width: 1000px) {
     .items {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
     }
     .item-box{
-        width: 100%;
+        width: 16rem;
+        height: 19.3rem;
+    }
+    .item-box img:nth-of-type(1){
+        width: 10rem;
+        height: 10.2rem;
     }
 
 }
 
 
-@media (max-width: 750px) {
+@media (max-width: 870px) {
     .items {
         grid-template-columns: repeat(1, 1fr);
-        gap: 2rem;
-    
     }
     .item-box{
-        width: 100%;
+        width: 19rem;
+        height: 21.7rem;
+    }
+    .item-box img:nth-of-type(1){
+        width: 12rem;
+        height: 12.2rem;
     }
 
 }

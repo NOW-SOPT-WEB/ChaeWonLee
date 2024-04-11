@@ -264,6 +264,7 @@ section > h2 {
 @media (max-width: 1200px) {
     .items {
         grid-template-columns: repeat(3, 12rem);
+
     }
 }
 

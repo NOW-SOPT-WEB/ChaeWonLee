@@ -78,7 +78,7 @@
     border-radius: 2rem;
     padding : 0 1rem;
     box-sizing: border-box;
-    animation: pulse 2s infinite;
+    animation: animation 2s infinite;
 }
 
 .todo__text{
@@ -103,7 +103,7 @@
     border:none;
 }
 
-@keyframes pulse {
+@keyframes animation {
     0% {
         transform: scale(1);
     }

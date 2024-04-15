@@ -1,11 +1,7 @@
 @import "reset.css";
 
-body {
-    background-color: #FAF3F0;
-}
-
 .header{
-    width: 100%;
+    width: 100vw;
     height: 6rem; 
     background-color: #FFCACC;
     display: flex; 
@@ -364,8 +360,8 @@ section {
     text-decoration: none;
 }
 
-.side-bar ul li a:hover {
-    color: white;
+.side-bar ul li:hover a {
+    color: white; 
 }
 
 

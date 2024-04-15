@@ -1,0 +1,33 @@
+@import "reset.css";
+
+.header{
+    width: 100vw;
+    height: 6rem; 
+    background-color: #FFCACC;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding-left: 3.75rem; 
+    padding-right: 3.75rem; 
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.header-title{
+    font-size: 3rem; 
+    text-align: center; 
+    color: white;
+    text-shadow: 
+    -0.2rem -0.2rem 0 #FFAEB1,  
+    0.2rem -0.2rem 0 #FFAEB1,
+    -0.2rem  0.2rem 0 #FFAEB1,
+    0.2rem  0.2rem 0 #FFAEB1;
+}
+
+.header-symbol, .header-menu{
+    width:4rem; 
+    height: 4rem;
+    cursor: pointer;
+}

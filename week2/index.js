@@ -55,28 +55,27 @@ function updateTitle(text) {
 }
 
 
-class Header {
-    constructor(target) {
-        this.target = document.querySelector(target);
-        this.menuOpenBtn = this.target.querySelector('.menu_open_btn');
-        this.menuCloseBtn = this.target.querySelector('.menu_close_btn');
-        this.init();
+// 사이드 바
+document.addEventListener('DOMContentLoaded', function() {
+
+    const menuButton = document.querySelector('.open-btn');
+    const closeSidebarButton = document.querySelector('.close-btn');
+    const sidebar = document.querySelector('.side-bar');
+
+    // 사이드바 열기
+    function openSidebar() {
+        sidebar.classList.add('open');
     }
 
-    init(){
-    	window.addEventListener('resize', this.resize.bind(this));
-
-        this.menuOpenBtn.addEventListener('click', this.openMenu.bind(this));
-        this.menuCloseBtn.addEventListener('click', this.closeMenu.bind(this));        
+    // 사이드바 닫기 
+    function closeSidebar() {
+        sidebar.classList.remove('open');
     }
 
-    resize(){
-    	window.innerWidth > 768 ? this.closeMenu() : null;
-    }
-    openMenu(){
-    	this.target.classList.add('open');
-    }
-    closeMenu(){
-    	this.target.classList.remove('open');
-    }
-}
+    // 사이드바 열기 버튼 클릭
+    menuButton.addEventListener('click', openSidebar);
+
+    // 사이드바 닫기 버튼 클릭
+    closeSidebarButton.addEventListener('click', closeSidebar);
+    
+});

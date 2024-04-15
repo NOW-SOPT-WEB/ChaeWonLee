@@ -33,6 +33,7 @@ body {
 .header-symbol, .header-menu{
     width:4rem; 
     height: 4rem;
+    cursor: pointer;
 }
 
 /* footer */
@@ -52,7 +53,7 @@ footer > h1 {
 
 
 /* nav */
-nav{
+.nav{
     width:15rem;
     height:35rem;
     border-radius: 3.125rem;
@@ -65,7 +66,7 @@ nav{
 
 }
 
-nav > h2 {
+.nav > h2 {
     font-size: 2rem;
     color: white;
     text-align: center;
@@ -73,7 +74,7 @@ nav > h2 {
 
 }
 
-nav > ul > li {
+.nav > ul > li {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,6 +96,7 @@ nav > ul > li {
 nav > ul > li:hover {
     background-color: #D4E2D4; 
     color: #FFFFFF;
+    cursor: pointer;
 }
 
 /* banner */
@@ -190,6 +192,7 @@ section {
     background-color: #D4E2D4;
     border-radius: 2.5rem;
     transition: transform 0.5s ease;
+    cursor: pointer;
 }
 
 
@@ -302,4 +305,68 @@ section {
     }
 
 }
+
+/* 사이드 바 */
+.side-bar {
+    display: none;
+    position: fixed; 
+    right: -17rem;;
+    top: 0;
+    width: 17rem; 
+    height: 100%; 
+    background-color: #f4f4f4; 
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    background-color: #DBC4F0;
+    z-index: 2; 
+    transition: right 0.3s ease;
+}
+
+.side-bar.open {
+    display: block;
+    right: 0;
+}
+
+.close-btn {
+    width: 4rem;
+    height: 4rem;
+    justify-content: left;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+.side-bar ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-bar ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12rem;
+    height: 3.5rem;
+    border-radius: 0.8rem;
+    background-color: white;
+    margin-top: 2.7rem;
+}
+
+.side-bar ul li:hover {
+    background-color: #D4E2D4; 
+}
+
+.side-bar ul li a {
+    font-size: 1.7rem;
+    text-align: center;
+    color: #D4E2D4;
+    text-decoration: none;
+}
+
+.side-bar ul li a:hover {
+    color: white;
+}
+
+
 

@@ -65,12 +65,18 @@ thead td:first-child {
     padding-left: 1rem;
 }
 
+tbody {
+    display: block;
+    max-height: 21.9rem;
+    overflow-y: auto;
+}
+
 tbody td:first-child{
     padding-left: 1rem;
 }
 
 tbody tr {
-    height: 8rem;
+    height: 7.3rem;
 }
 tbody td{
     vertical-align: middle;
@@ -113,8 +119,36 @@ tbody td{
 }
 
 .cart-img{
-    width: 6.5rem;
-    height: 6.5rem;
+    width: 6rem;
+    height: 6rem;
     border-radius: 1rem;
     object-fit: cover;
+}
+
+.button-box{
+    position: fixed; 
+    bottom: 5rem; 
+}
+
+.home-btn{
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    color: #D4E2D4;
+    border: solid 0.25rem #D4E2D4;
+    border-radius: 1rem;
+    text-align: center;
+
+}
+
+.buy-btn{
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 1rem;
+    text-align: center;
+    margin-left: 4rem;
+    background-color: #D4E2D4;
+    cursor: pointer;
 }

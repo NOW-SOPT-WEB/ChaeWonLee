@@ -23,6 +23,7 @@ function renderItems(category) {
     filteredList.forEach(item => {
         const itemBox = document.createElement('article');
         itemBox.className = 'item-box';
+        itemBox.setAttribute('data-category', item.category);
 
         const img = document.createElement('img');
         img.setAttribute('src', item.image);
@@ -78,4 +79,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // 사이드바 닫기 버튼 클릭
     closeSidebarButton.addEventListener('click', closeSidebar);
     
+});
+
+
+// 상품 아이템 클릭 이벤트
+document.querySelector('.items').addEventListener('click', function(e) {
+    if (e.target.closest('.item-box')) {
+        const itemElement = e.target.closest('.item-box');
+        const item = {
+            title: itemElement.querySelector('.item-title').textContent,
+            price: itemElement.querySelector('.item-charge').textContent,
+            image: itemElement.querySelector('img').getAttribute('src'),
+            category: itemElement.getAttribute('data-category')
+        };
+
+        if (confirm('장바구니에 추가하시겠습니까?')) {
+            let cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+            cartItems.push(item);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            console.log("h1", JSON.stringify(cartItems))
+            alert('장바구니에 추가되었습니다.');
+        }
+    }
 });

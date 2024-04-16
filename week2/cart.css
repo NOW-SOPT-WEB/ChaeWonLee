@@ -31,3 +31,90 @@
     height: 4rem;
     cursor: pointer;
 }
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+    flex-direction: column;
+}
+
+table {
+    width: 60rem;
+    border: solid 0.18rem #FFCACC;
+}
+
+thead {
+    width: 100%;
+}
+
+thead td {
+    vertical-align: middle;
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+}
+
+thead tr {
+    height: 4.2rem;
+    background-color: #FFCACC; /* tr 요소에 배경색 적용 */
+}
+
+thead td:first-child {
+    padding-left: 1rem;
+}
+
+tbody td:first-child{
+    padding-left: 1rem;
+}
+
+tbody tr {
+    height: 8rem;
+}
+tbody td{
+    vertical-align: middle;
+    font-size: 1.3rem;
+    color: #FFCACC;
+    text-align: center;
+    
+}
+
+.td-title, .td-charge ,.td-cate {
+    border-right: solid 0.18rem #FFCACC;
+}
+
+.td-input{
+    width: 3rem;
+}
+.td-img{
+    width: 9rem;
+}
+.td-title{
+    width: 13rem;
+}
+
+.td-charge{
+    width: 11.5rem;
+}
+
+.td-cate{
+    width: 11.5rem;
+}
+
+.delete-btn{
+    width: 7rem;
+    height: 3rem;
+    background-color: #DBC4F0;
+    color: white;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+.cart-img{
+    width: 6.5rem;
+    height: 6.5rem;
+    border-radius: 1rem;
+    object-fit: cover;
+}

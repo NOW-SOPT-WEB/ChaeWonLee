@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const tr = chk.closest('tr');
             const title = tr.querySelector('.td-title').textContent; 
     
-            const itemIndex = cartItems.findIndex(item => item.title === title); 
+            const itemIndex = cartItems.findIndex(item => item.title === title); // 고유한 ID를 사용하여 해당 아이템을 찾습니다.
             if (itemIndex !== -1) {
                 cartItems.splice(itemIndex, 1); // 해당 아이템 삭제
             }
@@ -91,7 +91,14 @@ function renderCartItems() {
         // 가격 셀
         const tdCharge = document.createElement('td');
         tdCharge.className = 'td-charge';
-        tdCharge.textContent = item.price;
+        const numericPrice = item.price.replace(/[^0-9.-]+/g, "");
+        const formattedPrice = new Intl.NumberFormat('ko-KR').format(Number(numericPrice));
+        tdCharge.textContent = `${formattedPrice}원`;
+        /*const tdCharge = document.createElement('td');
+        const numericPrice = item.price.replace(/[^0-9.-]+/g, "");
+        const formattedPrice = new Intl.NumberFormat('ko-KR').format(Number(numericPrice));
+        tdCharge.textContent = formattedPrice;*/
+
 
         // 카테고리 셀
         const tdCate = document.createElement('td');

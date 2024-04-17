@@ -43,8 +43,10 @@ main {
 
 /* 테이블 표 */
 table {
+    table-layout: fixed;
     border: solid 0.18rem #FFCACC;
     border-collapse: collapse;
+    width:59.5rem
 }
 
 thead, tbody{
@@ -56,19 +58,19 @@ thead td {
     font-size: 1.5rem;
     color: white;
     text-align: center;
+    padding-right: 0.1rem;
 }
 
 thead tr {
     position: sticky;
     top: 0;
-    width: 60rem;
     height: 4.2rem;
     background-color: #FFCACC;
 }
 
 
 thead td:first-child {
-    padding-left: 1rem;
+    padding-left: 0.5rem;
 }
 
 tbody td:first-child{
@@ -81,7 +83,7 @@ tbody tr {
 
 tbody {
     max-height: 21.9rem;
-    overflow:auto;
+    overflow: auto;
 }
 
 tbody td{
@@ -162,6 +164,7 @@ tbody tr:last-child td {
     border: solid 0.25rem #D4E2D4;
     border-radius: 1rem;
     text-align: center;
+    cursor: pointer;
 
 }
 
@@ -180,7 +183,7 @@ tbody tr:last-child td {
 
 /* 모달 */
 .modal{
-    /*display: none;*/
+    display: none;
     position: absolute;
     top:0;
     left: 0;
@@ -234,6 +237,8 @@ tbody tr:last-child td {
     padding-left: 4.3rem;
     border-collapse: collapse;
     box-sizing: border-box;
+    max-height: 22rem;
+    overflow-y: auto;
 }
 
 .modal-item-img{
@@ -259,6 +264,8 @@ article > p {
 }
 
 .modal-btn-box{
+    position: fixed; 
+    bottom: 0rem; 
     width: 100%;
     background-color: #D4E2D4;
     height: 5rem;
@@ -266,7 +273,6 @@ article > p {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    margin-top: 2.1rem;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
 }

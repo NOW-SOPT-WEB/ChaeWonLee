@@ -1,27 +1,68 @@
 window.onload = function() {
-    renderCartItems(); // 장바구니 아이템 렌더링
-
-    /*const thead = document.querySelector("thead");
-    const tbody = document.querySelector("tbody");
-    
-    const theadCells = thead.querySelectorAll("tr:first-child td");
-    const tbodyCells = tbody.querySelectorAll("tr:first-child td");
-    
-    theadCells.forEach((cell, index) => {
-
-        cell.style.width = `60rem`;
-    });*/
-    
+    renderCartItems(); // 장바구니 아이템 렌더링  
 };
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    renderCartItems();
 
+    const openModalBtn = document.querySelector('.buy-btn');
+    const closeModalBtn = document.querySelector('.close-btn');
+    const modal = document.querySelector('.modal');
+    const modalBuyBtn = document.querySelector('.modal-buy-btn');
+    const checkboxAll = document.querySelector('thead input[type="checkbox"]');
+
+    // '구매하기' 버튼 클릭시 모달 오픈
+    openModalBtn.addEventListener('click', function() {
+        const selectedItems = document.querySelectorAll('tbody input[type="checkbox"]:checked');
+        renderModalItems(selectedItems);
+        modal.style.display = 'block';
+    });
+
+    // 모달 내 '닫기' 버튼 클릭시 모달 닫힘
+    closeModalBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // thead의 체크박스 클릭시 tbody의 모든 체크박스 체크/언체크
+    checkboxAll.addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+        checkboxes.forEach(chk => {
+            chk.checked = checkboxAll.checked;
+        });
+    });
+
+    // 모달 내 '구매하기' 버튼 클릭시 선택된 상품 삭제 및 모달 닫힘
+    modalBuyBtn.addEventListener('click', function() {
+        const selectedItems = document.querySelectorAll('tbody input[type="checkbox"]:checked');
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        
+        selectedItems.forEach(chk => {
+            const tr = chk.closest('tr');
+            const title = tr.querySelector('.td-title').textContent; 
+    
+            const itemIndex = cartItems.findIndex(item => item.title === title); 
+            if (itemIndex !== -1) {
+                cartItems.splice(itemIndex, 1); // 해당 아이템 삭제
+            }
+    
+            tr.remove(); // DOM에서 tr 요소 제거
+        });
+    
+        localStorage.setItem('cartItems', JSON.stringify(cartItems)); // 업데이트된 장바구니 데이터 저장
+        renderCartItems(); // 장바구니 아이템 다시 렌더링
+        modal.style.display = 'none'; // 모달 닫기
+
+        checkboxAll.checked = false;
+    });
+    
+});
 
 function renderCartItems() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     console.log("h2", JSON.stringify(cartItems))
     const tbody = document.querySelector('table tbody');
-    tbody.innerHTML = ''; // 기존 내용을 비웁니다.
+    tbody.innerHTML = ''; 
 
     cartItems.forEach((item, index) => {
         const tr = document.createElement('tr');
@@ -81,4 +122,50 @@ function renderCartItems() {
 
         tbody.appendChild(tr);
     });
+}
+
+function renderModalItems(selectedItems) {
+    const modalItems = document.querySelector('.modal-items');
+    modalItems.innerHTML = '';
+    let totalAmount = 0;
+
+    selectedItems.forEach(input => {
+        const tr = input.closest('tr');
+        const imgSrc = tr.querySelector('.cart-img').src;
+        const title = tr.querySelector('.td-title').textContent;
+        const price = parseInt(tr.querySelector('.td-charge').textContent);
+    
+        totalAmount += price;
+    
+        const article = document.createElement('article');
+        article.className = 'modal-item-content';
+    
+        // 이미지 요소 생성 및 설정
+        const imgElement = document.createElement('img');
+        imgElement.className = 'modal-item-img';
+        imgElement.src = imgSrc;
+        imgElement.alt = title;
+    
+        // 가격 표시 요소 생성 및 설정
+        const priceElement = document.createElement('p');
+        priceElement.className = 'modal-item-charge';
+        priceElement.textContent = `${price}원`;
+    
+        // 제목 표시 요소 생성 및 설정
+        const titleElement = document.createElement('p');
+        titleElement.className = 'modal-item-title';
+        titleElement.textContent = title;
+    
+        // article 요소에 생성한 이미지, 가격, 제목 요소를 순서대로 추가
+        article.appendChild(imgElement);
+        article.appendChild(priceElement);
+        article.appendChild(titleElement);
+    
+        // 최종적으로 모달 아이템에 article 요소 추가
+        modalItems.appendChild(article);
+    });
+
+    // 총 금액 업데이트
+    const modalTop = document.querySelector('.modal-top h1');
+    modalTop.textContent = `총 금액 : ${totalAmount}원`;
 }

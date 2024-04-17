@@ -1,6 +1,21 @@
 window.onload = function() {
     renderCartItems(); // 장바구니 아이템 렌더링
+
+    /*const thead = document.querySelector("thead");
+    const tbody = document.querySelector("tbody");
+    
+    const theadCells = thead.querySelectorAll("tr:first-child td");
+    const tbodyCells = tbody.querySelectorAll("tr:first-child td");
+    
+    theadCells.forEach((cell, index) => {
+
+        cell.style.width = `60rem`;
+    });*/
+    
 };
+
+
+
 
 function renderCartItems() {
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];

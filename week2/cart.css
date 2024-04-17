@@ -41,12 +41,12 @@ main {
 }
 
 table {
-    width: 60rem;
     border: solid 0.18rem #FFCACC;
+    border-collapse: collapse;
 }
 
-thead {
-    width: 100%;
+thead, tbody{
+    display:block;
 }
 
 thead td {
@@ -57,18 +57,16 @@ thead td {
 }
 
 thead tr {
+    position: sticky;
+    top: 0;
+    width: 60rem;
     height: 4.2rem;
     background-color: #FFCACC; /* tr 요소에 배경색 적용 */
 }
 
+
 thead td:first-child {
     padding-left: 1rem;
-}
-
-tbody {
-    display: block;
-    max-height: 21.9rem;
-    overflow-y: auto;
 }
 
 tbody td:first-child{
@@ -78,21 +76,39 @@ tbody td:first-child{
 tbody tr {
     height: 7.3rem;
 }
+
+tbody {
+    max-height: 21.9rem;
+    overflow:auto;
+}
+
 tbody td{
     vertical-align: middle;
     font-size: 1.3rem;
     color: #FFCACC;
     text-align: center;
-    
+    border-bottom: solid 0.18rem #FFCACC;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
 }
 
 .td-title, .td-charge ,.td-cate {
     border-right: solid 0.18rem #FFCACC;
 }
 
+
 .td-input{
     width: 3rem;
 }
+
+.td-info {
+    width: 21rem;
+}
+
 .td-img{
     width: 9rem;
 }
@@ -105,6 +121,10 @@ tbody td{
 }
 
 .td-cate{
+    width: 11.5rem;
+}
+
+.td-btn {
     width: 11.5rem;
 }
 

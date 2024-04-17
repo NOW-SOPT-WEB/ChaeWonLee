@@ -98,7 +98,6 @@ document.querySelector('.items').addEventListener('click', function(e) {
             cartItems.push(item);
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
             console.log("h1", JSON.stringify(cartItems))
-            alert('장바구니에 추가되었습니다.');
         }
     }
 });

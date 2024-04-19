@@ -68,6 +68,10 @@ thead tr {
     background-color: #FFCACC;
 }
 
+tbody {
+    max-height: 21.9rem;
+    overflow: auto;
+}
 
 thead td:first-child {
     padding-left: 0.5rem;
@@ -79,11 +83,6 @@ tbody td:first-child{
 
 tbody tr {
     height: 7.3rem;
-}
-
-tbody {
-    max-height: 21.9rem;
-    overflow: auto;
 }
 
 tbody td{
@@ -100,11 +99,6 @@ tbody tr:last-child td {
     border-bottom: none;
 }
 
-.td-title, .td-charge ,.td-cate {
-    border-right: solid 0.18rem #FFCACC;
-}
-
-
 .td-input{
     width: 3rem;
 }
@@ -118,14 +112,17 @@ tbody tr:last-child td {
 }
 .td-title{
     width: 13rem;
+    border-right: solid 0.18rem #FFCACC;
 }
 
 .td-charge{
     width: 11.5rem;
+    border-right: solid 0.18rem #FFCACC;
 }
 
 .td-cate{
     width: 11.5rem;
+    border-right: solid 0.18rem #FFCACC;
 }
 
 .td-btn {
@@ -295,3 +292,96 @@ article > p {
     color: white;
     cursor: pointer;
 }
+
+
+/* 사이드 바 */
+/* 사이드 바 애니메이션 */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.side-bar {
+    visibility: hidden; 
+    opacity: 0; 
+    position: fixed; 
+    right: 0;
+    top: 0;
+    width: 17rem; 
+    height: 100%; 
+    background-color: #DBC4F0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    z-index: 2; 
+    transform: translateX(100%);
+}
+
+/* 사이드 바 열림 상태 */
+.side-bar.open {
+    visibility: visible; 
+    animation: slideIn 0.5s forwards;
+}
+
+/* 사이드 바 닫힘 상태 */
+.side-bar.close {
+    animation: slideOut 0.5s forwards;
+}
+
+.close-btn {
+    width: 4rem;
+    height: 4rem;
+    justify-content: left;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+.side-bar ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-bar ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12rem;
+    height: 3.5rem;
+    border-radius: 0.8rem;
+    background-color: white;
+    margin-top: 2.7rem;
+}
+
+.side-bar ul li:hover {
+    background-color: #D4E2D4; 
+}
+
+.side-bar ul li a {
+    font-size: 1.7rem;
+    text-align: center;
+    color: #D4E2D4;
+    text-decoration: none;
+}
+
+.side-bar ul li:hover a {
+    color: white; 
+}
+

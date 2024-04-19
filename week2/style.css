@@ -337,7 +337,6 @@ section {
     background-color: #DBC4F0;
     box-shadow: 2px 0 5px rgba(0,0,0,0.5);
     z-index: 2; 
-    /* 초기 위치 설정 */
     transform: translateX(100%);
 }
 
@@ -351,9 +350,6 @@ section {
 .side-bar.close {
     animation: slideOut 0.5s forwards;
 }
-
-
-
 
 .close-btn {
     width: 4rem;

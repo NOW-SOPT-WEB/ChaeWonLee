@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
         localStorage.setItem('cartItems', JSON.stringify(cartItems)); // 업데이트된 장바구니 데이터 저장
         renderCartItems(); // 장바구니 아이템 다시 렌더링
-        modal.style.display = 'none'; // 모달 닫기
+        // 구매 완료 Alert 추가
+        alert("구매 완료했습니다");
+        modal.style.display = 'none'; // Alert 확인 후 모달 닫기
 
         checkboxAll.checked = false;
     });
@@ -94,12 +96,7 @@ function renderCartItems() {
         const numericPrice = item.price.replace(/[^0-9.-]+/g, "");
         const formattedPrice = new Intl.NumberFormat('ko-KR').format(Number(numericPrice));
         tdCharge.textContent = `${formattedPrice}원`;
-        /*const tdCharge = document.createElement('td');
-        const numericPrice = item.price.replace(/[^0-9.-]+/g, "");
-        const formattedPrice = new Intl.NumberFormat('ko-KR').format(Number(numericPrice));
-        tdCharge.textContent = formattedPrice;*/
-
-
+        
         // 카테고리 셀
         const tdCate = document.createElement('td');
         tdCate.className = 'td-cate';
@@ -140,39 +137,41 @@ function renderModalItems(selectedItems) {
         const tr = input.closest('tr');
         const imgSrc = tr.querySelector('.cart-img').src;
         const title = tr.querySelector('.td-title').textContent;
-        const price = parseInt(tr.querySelector('.td-charge').textContent);
-    
+        // 콤마와 '원' 문자 제거 후 정수 변환
+        const price = parseInt(tr.querySelector('.td-charge').textContent.replace(/,/g, '').replace('원', ''));
+        
         totalAmount += price;
-    
+        
         const article = document.createElement('article');
         article.className = 'modal-item-content';
-    
+        
         // 이미지 요소 생성 및 설정
         const imgElement = document.createElement('img');
         imgElement.className = 'modal-item-img';
         imgElement.src = imgSrc;
         imgElement.alt = title;
-    
+        
         // 가격 표시 요소 생성 및 설정
         const priceElement = document.createElement('p');
         priceElement.className = 'modal-item-charge';
-        priceElement.textContent = `${price}원`;
-    
+        priceElement.textContent = `${price.toLocaleString()}원`;
+        
         // 제목 표시 요소 생성 및 설정
         const titleElement = document.createElement('p');
         titleElement.className = 'modal-item-title';
         titleElement.textContent = title;
-    
+        
         // article 요소에 생성한 이미지, 가격, 제목 요소를 순서대로 추가
         article.appendChild(imgElement);
         article.appendChild(priceElement);
         article.appendChild(titleElement);
-    
+        
         // 최종적으로 모달 아이템에 article 요소 추가
         modalItems.appendChild(article);
     });
-
-    // 총 금액 업데이트
+    
+    // 총 금액 업데이트, 숫자에 콤마 추가
     const modalTop = document.querySelector('.modal-top h1');
-    modalTop.textContent = `총 금액 : ${totalAmount}원`;
+    modalTop.textContent = `총 금액 : ${totalAmount.toLocaleString()}원`;
+    
 }

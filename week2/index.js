@@ -1,5 +1,4 @@
-// 페이지 로딩 시 전체 상품 렌더링 및 초기 제목 설정
-window.onload = function() {
+/*window.onload = function() {
     renderItems("all");
     updateTitle("전체"); // 초기 제목 "전체"로
 };
@@ -75,4 +74,162 @@ document.querySelector('.items').addEventListener('click', function(e) {
             console.log("h1", JSON.stringify(cartItems))
         }
     }
-});
+});*/
+
+
+
+/*let navElement = document.querySelector('.nav');
+let itemsSection = document.querySelector('.items');
+let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+window.onload = function() {
+    init(); 
+};
+
+function init() {
+    renderItems("all");
+    updateTitle("전체");
+    setupEventListeners();
+}
+
+function setupEventListeners() {
+    navElement.addEventListener('click', function(event) {
+        const category = event.target.dataset.category;
+        if (category) {
+            renderItems(category);
+            updateTitle(event.target.innerText);
+        }
+    });
+    
+    itemsSection.addEventListener('click', function(event) {
+        const itemBox = event.target.closest('.item-box');
+        if (itemBox) {
+            addItemToCart(itemBox);
+        }
+    });
+}
+
+function renderItems(category) {
+    itemsSection.innerHTML = ''; 
+    const fragment = document.createDocumentFragment();
+
+    SHOPPING_LIST.filter(item => category === "all" || item.category === category)
+    .map(item => {
+        const itemBox = document.createElement('article');
+        itemBox.className = 'item-box';
+        itemBox.dataset.category = item.category;
+        itemBox.innerHTML = `
+            <img src="${item.image}" alt="${item.title}">
+            <i class="fas fa-heart"></i>
+            <h2 class="item-title">${item.title}</h2>
+            <p class="item-charge">${item.price}원</p>
+        `;
+        return itemBox;
+    })
+    .forEach(itemBox => fragment.appendChild(itemBox));
+
+    itemsSection.appendChild(fragment);
+}
+
+function addItemToCart(itemElement) {
+    const item = {
+        title: itemElement.querySelector('.item-title').textContent,
+        price: itemElement.querySelector('.item-charge').textContent,
+        image: itemElement.querySelector('img').src,
+        category: itemElement.dataset.category
+    };
+
+    if (confirm('장바구니에 추가하시겠습니까?')) {
+        cartItems.push(item);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        console.log("장바구니에 추가됨:", item.title);
+    }
+}
+
+
+function updateTitle(text) {
+    const titleElement = document.querySelector('.title');
+    titleElement.innerText = text; 
+}
+*/
+
+let navElement = document.querySelector('.nav');
+let itemsSection = document.querySelector('.items');
+let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+window.onload = function() {
+    init(); 
+};
+
+function init() {
+    renderItems("all");
+    updateTitle("전체");
+    setupEventListeners();
+}
+
+function setupEventListeners() {
+    navElement.addEventListener('click', handleNavClick);
+    itemsSection.addEventListener('click', handleItemClick);
+}
+
+function handleNavClick(event) {
+    const category = event.target.dataset.category;
+    if (category) {
+        renderItems(category);
+        updateTitle(event.target.innerText);
+    }
+}
+
+function handleItemClick(event) {
+    const itemBox = event.target.closest('.item-box');
+    if (itemBox) {
+        addItemToCart(itemBox);
+    }
+}
+
+function renderItems(category) {
+    itemsSection.innerHTML = ''; 
+    const fragment = document.createDocumentFragment();
+
+    SHOPPING_LIST.forEach(item => {
+        if (category === "all" || item.category === category) {
+            const itemBox = createItemBox(item);
+            fragment.appendChild(itemBox);
+        }
+    });
+
+    itemsSection.appendChild(fragment);
+}
+
+function createItemBox(item) {
+    const itemBox = document.createElement('article');
+    itemBox.className = 'item-box';
+    itemBox.dataset.category = item.category;
+    itemBox.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <i class="fas fa-heart"></i>
+        <h2 class="item-title">${item.title}</h2>
+        <p class="item-charge">${item.price}원</p>
+    `;
+    return itemBox;
+}
+
+function addItemToCart(itemElement) {
+    if (confirm('장바구니에 추가하시겠습니까?')) {
+        const item = {
+            title: itemElement.querySelector('.item-title').textContent,
+            price: itemElement.querySelector('.item-charge').textContent,
+            image: itemElement.querySelector('img').src,
+            category: itemElement.dataset.category
+        };
+
+        cartItems.push(item);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+}
+
+function updateTitle(text) {
+    const titleElement = document.querySelector('.title');
+    titleElement.innerText = text; 
+}
+

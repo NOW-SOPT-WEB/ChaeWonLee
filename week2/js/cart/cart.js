@@ -1,4 +1,4 @@
-/*const modal = document.querySelector('.modal');
+const modal = document.querySelector('.modal');
 const checkboxAll = document.querySelector('thead input[type="checkbox"]');
 
 // 모달 열기
@@ -127,5 +127,5 @@ const renderModalItems = (selectedItems) => {
     modalTop.textContent = `총 금액 : ${totalAmount.toLocaleString()}원`;
 };
 
-renderCartItems();*/
+renderCartItems();
 

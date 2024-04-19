@@ -191,24 +191,24 @@ tbody tr:last-child td {
     z-index: 2;
 }
 
-
 .modal-top {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
-    margin-top: 1rem;
     justify-content: space-between;
-    position: relative; 
+    position: relative;
+    margin-top: 1rem;
 }
 
 .modal-top::before {
     content: '';
-    width: 3.2rem; 
-    height: 3.2rem; 
-    margin-left: 1rem; 
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-left: 1rem;
 }
 
+    
 .modal-top > h1 {
     font-size: 1.8rem;
     color: #DBC4F0;
@@ -216,14 +216,12 @@ tbody tr:last-child td {
     margin: 0 auto;
 }
 
-.close-btn {
+.modal-close-btn {
     width: 3.2rem;
     height: 3.2rem;
     margin-right: 1rem;
     cursor: pointer;
 }
-
-
 
 .modal-popup {
     position: absolute;

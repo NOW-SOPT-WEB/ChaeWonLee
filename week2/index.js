@@ -1,3 +1,5 @@
+import { SHOPPING_LIST } from './listData.js';
+
 /*window.onload = function() {
     renderItems("all");
     updateTitle("전체"); // 초기 제목 "전체"로
@@ -153,26 +155,20 @@ function updateTitle(text) {
 }
 */
 
-let navElement = document.querySelector('.nav');
-let itemsSection = document.querySelector('.items');
+
+
+const navElement = document.querySelector('.nav');
+const itemsSection = document.querySelector('.items');
 let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-window.onload = function() {
-    init(); 
-};
 
-function init() {
-    renderItems("all");
-    updateTitle("전체");
-    setupEventListeners();
-}
 
-function setupEventListeners() {
+const setupEventListeners = () => {
     navElement.addEventListener('click', handleNavClick);
     itemsSection.addEventListener('click', handleItemClick);
 }
 
-function handleNavClick(event) {
+const handleNavClick = (event) => {
     const category = event.target.dataset.category;
     if (category) {
         renderItems(category);
@@ -180,14 +176,14 @@ function handleNavClick(event) {
     }
 }
 
-function handleItemClick(event) {
+const handleItemClick = (event) => {
     const itemBox = event.target.closest('.item-box');
     if (itemBox) {
         addItemToCart(itemBox);
     }
 }
 
-function renderItems(category) {
+const renderItems = (category) => {
     itemsSection.innerHTML = ''; 
     const fragment = document.createDocumentFragment();
 
@@ -201,7 +197,7 @@ function renderItems(category) {
     itemsSection.appendChild(fragment);
 }
 
-function createItemBox(item) {
+const createItemBox = (item) => {
     const itemBox = document.createElement('article');
     itemBox.className = 'item-box';
     itemBox.dataset.category = item.category;
@@ -214,7 +210,7 @@ function createItemBox(item) {
     return itemBox;
 }
 
-function addItemToCart(itemElement) {
+const addItemToCart = (itemElement) => {
     if (confirm('장바구니에 추가하시겠습니까?')) {
         const item = {
             title: itemElement.querySelector('.item-title').textContent,
@@ -228,8 +224,11 @@ function addItemToCart(itemElement) {
     }
 }
 
-function updateTitle(text) {
+const updateTitle = (text) => {
     const titleElement = document.querySelector('.title');
     titleElement.innerText = text; 
 }
 
+renderItems("all");
+updateTitle("전체");
+setupEventListeners();

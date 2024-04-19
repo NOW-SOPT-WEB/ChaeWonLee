@@ -1,4 +1,4 @@
-const SHOPPING_LIST = [
+export const SHOPPING_LIST = [
     { category: 'outer', title: '가디건', price: 26930, image: './assets/img/outer-cardigan.png' },
     { category: 'outer', title: '후드집업', price: 69700, image: './assets/img/outer-hooded.png' },
     { category: 'outer', title: '가죽자켓', price: 45900, image: './assets/img/outer-leather.png'},

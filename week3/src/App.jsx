@@ -16,22 +16,27 @@ const App = () => {
   const resetGame = () => setScore(0);
 
   return (
-    <>
+    <AppWrapper>
       <Header score={score} maxScore={maxScore} onReset={resetGame} />
       <LevelButtonsContainer>
         <Button onClick={setEasyLevel} variant="level" text="Easy" />
         <Button onClick={setNormalLevel} variant="level" text="Normal" />
         <Button onClick={setHardLevel} variant="level" text="Hard" />
       </LevelButtonsContainer>
-    </>
+    </AppWrapper>
   );
 };
 
 export default App;
 
+const AppWrapper = styled.main`
+  height: 100vh;
+  background-color: ${({ theme }) => theme.colors.light_green};
+`;
+
 const LevelButtonsContainer = styled.section`
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-top: 11rem;
+  padding-top: 11rem;
 `;

@@ -29,9 +29,9 @@ const App = () => {
 
 export default App;
 
-const LevelButtonsContainer = styled.div`
+const LevelButtonsContainer = styled.section`
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-top: 1rem;
+  margin-top: 11rem;
 `;

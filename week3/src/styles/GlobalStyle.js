@@ -34,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
         border: 0;
         font-size: 100%;
         vertical-align: baseline;
+        font-family: 'TTLaundryGothicB';
     }
 
     article, aside, details, figcaption, figure, 

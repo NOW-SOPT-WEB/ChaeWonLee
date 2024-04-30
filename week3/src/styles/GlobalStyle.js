@@ -3,14 +3,17 @@ import reset from "styled-reset";
 
 const GlobalStyle = createGlobalStyle`
     ${reset}
+    
     @font-face {
-    font-family: "BM";
-    font-weight: normal;
-    src: url("./assets/font/BMHANNAProOTF.otf") format("truetype");
+    font-family: 'TTLaundryGothicB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 
     * {
     box-sizing: border-box;
-    font-family: "BM";
+    font-family: 'TTLaundryGothicB';
     }
 
     html, body, div, span, applet, object, iframe,
@@ -51,11 +54,6 @@ const GlobalStyle = createGlobalStyle`
         content: none;
     }
 
-    button {
-        border: 0;
-        background-color: transparent;
-    }
-}
 
 `;
 

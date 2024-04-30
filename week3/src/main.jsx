@@ -5,8 +5,10 @@ import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyle />
-    <App />
-  </ThemeProvider>
+  <>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
+  </>
 );

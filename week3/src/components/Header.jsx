@@ -10,9 +10,7 @@ const Header = ({ score, maxScore, onReset }) => {
           {score} / {maxScore}
         </HeaderScore>
       </HeaderContainer>
-      <StyledButtonWrapper>
-        <Button onClick={onReset} variant="reset" text="Reset" />
-      </StyledButtonWrapper>
+      <Button onClick={onReset} variant="reset" text="Reset" />
     </HeaderWrapper>
   );
 };
@@ -56,5 +54,3 @@ const HeaderContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-const StyledButtonWrapper = styled.div``;

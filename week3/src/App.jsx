@@ -4,6 +4,7 @@ import Button from "./components/Button";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import cardData from "./constants/cardData.js";
+import Modal from "./components/Modal.jsx";
 
 const App = () => {
   const [score, setScore] = useState(0);
@@ -32,6 +33,7 @@ const App = () => {
 
   const [cards, setCards] = useState(initializeCards(maxScore));
   const [flippedCards, setFlippedCards] = useState([]);
+  const [showModal, setShowModal] = useState(false); // 모달 표시 상태
 
   // 레벨 설정 및 게임 초기화 함수
   const setLevelAndReset = (level) => {
@@ -45,7 +47,16 @@ const App = () => {
   const setHardLevel = () => setLevelAndReset(9);
 
   // 게임 리셋
-  const resetGame = () => setLevelAndReset(maxScore);
+  const resetGame = () => {
+    setLevelAndReset(maxScore);
+    setShowModal(false); // 모달 숨김
+  };
+
+  useEffect(() => {
+    if (score === maxScore) {
+      setShowModal(true); // 스코어가 최대에 도달하면 모달 표시
+    }
+  }, [score, maxScore]);
 
   // 카드를 뒤집는 함수
   const flipCard = (id) => {
@@ -110,6 +121,7 @@ const App = () => {
           <Card key={card.id} {...card} onClick={flipCard} />
         ))}
       </CardContainer>
+      {showModal && <Modal onClose={resetGame} />} {/* 게임 종료 모달 */}
     </AppWrapper>
   );
 };

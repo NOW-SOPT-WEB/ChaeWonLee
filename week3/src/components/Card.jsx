@@ -1,8 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import front from "../assets/img/clover.jpg";
 
-const Card = ({ id, src, alt, flipped, onClick, flipping, unflipping }) => {
-  //console.log("카드", src);
+/*const Card = ({ id, src, alt, flipped, onClick, flipping, unflipping }) => {
   return (
     <CardWrapper onClick={() => onClick(id)}>
       <CardFlipper
@@ -10,6 +9,17 @@ const Card = ({ id, src, alt, flipped, onClick, flipping, unflipping }) => {
         flipping={flipping ? "true" : undefined}
         unflipping={unflipping ? "true" : undefined}
       >
+        <CardFront src={front} alt="카드 앞면" />
+        <CardBack src={src} alt={alt} />
+      </CardFlipper>
+    </CardWrapper>
+  );
+};*/
+
+const Card = ({ id, src, alt, flipped, onClick }) => {
+  return (
+    <CardWrapper onClick={() => onClick(id)}>
+      <CardFlipper flipped={flipped ? "true" : undefined}>
         <CardFront src={front} alt="카드 앞면" />
         <CardBack src={src} alt={alt} />
       </CardFlipper>

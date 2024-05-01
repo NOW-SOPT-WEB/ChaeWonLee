@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import cardData from "./constants/cardData.js";
 import Modal from "./components/Modal.jsx";
+import shuffleArray from "./utils/shuffleArray.jsx";
 
 const App = () => {
   const [score, setScore] = useState(0);
@@ -30,7 +31,7 @@ const App = () => {
 
   const [cards, setCards] = useState(initializeCards(maxScore));
   const [flippedCards, setFlippedCards] = useState([]);
-  const [showModal, setShowModal] = useState(false); // 모달 표시 상태
+  const [showModal, setShowModal] = useState(false);
 
   // 레벨 설정 및 게임 초기화 함수
   const setLevelAndReset = (level) => {
@@ -46,12 +47,14 @@ const App = () => {
   // 게임 리셋
   const resetGame = () => {
     setLevelAndReset(maxScore);
-    setShowModal(false); // 모달 숨김
+    setShowModal(false);
   };
 
   useEffect(() => {
     if (score === maxScore) {
-      setShowModal(true); // 스코어가 최대에 도달하면 모달 표시
+      setTimeout(() => {
+        setShowModal(true); // 스코어가 최대에 도달하면 모달 표시
+      }, 1000); // 마지막 카드가 완전히 뒤집힌 후 모달이 나타나도록 지연 시간 추가
     }
   }, [score, maxScore]);
 
@@ -76,7 +79,7 @@ const App = () => {
   };
 
   // 매칭 로직
-  useEffect(() => {
+  /*useEffect(() => {
     if (flippedCards.length === 2) {
       const firstCardId = flippedCards[0];
       const secondCardId = flippedCards[1];
@@ -121,7 +124,45 @@ const App = () => {
         }, 600);
       }
     }
-  }, [flippedCards, cards, maxScore]);
+  }, [flippedCards, cards, maxScore]);*/
+
+  const checkCardsMatch = useCallback(() => {
+    if (flippedCards.length === 2) {
+      const [firstCardId, secondCardId] = flippedCards;
+
+      const firstCard = cards.find((card) => card.id === firstCardId);
+      const secondCard = cards.find((card) => card.id === secondCardId);
+
+      const isMatch = firstCard.alt === secondCard.alt;
+
+      setTimeout(() => {
+        setCards((cards) =>
+          cards.map((card) => {
+            if (!flippedCards.includes(card.id)) return card;
+            return {
+              ...card,
+              flipped: isMatch,
+              flipping: false,
+            };
+          })
+        );
+
+        setFlippedCards([]);
+
+        if (isMatch) {
+          setScore((prevScore) => prevScore + 1);
+        }
+      }, 600);
+
+      if (isMatch && score + 1 === maxScore) {
+        setShowModal(true);
+      }
+    }
+  }, [cards, flippedCards, maxScore, score]);
+
+  useEffect(() => {
+    checkCardsMatch();
+  }, [checkCardsMatch]);
 
   return (
     <AppWrapper>

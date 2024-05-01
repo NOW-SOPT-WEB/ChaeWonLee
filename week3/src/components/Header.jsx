@@ -10,7 +10,9 @@ const Header = ({ score, maxScore, onReset }) => {
           {score} / {maxScore}
         </HeaderScore>
       </HeaderContainer>
-      <Button onClick={onReset} variant="reset" text="Reset" />
+      <ResetButtonWrapper>
+        <Button onClick={onReset} variant="reset" text="Reset" />
+      </ResetButtonWrapper>
     </HeaderWrapper>
   );
 };
@@ -52,4 +54,9 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const ResetButtonWrapper = styled.div`
+  position: fixed;
+  right: 2rem;
 `;

@@ -15,7 +15,6 @@ const VARIANTS = {
   `,
 };
 
-// 객체 구조 분해 할당을 통한 props의 올바른 사용
 const Button = ({ onClick, variant, text }) => {
   return (
     <StyledButton onClick={onClick} variant={variant}>

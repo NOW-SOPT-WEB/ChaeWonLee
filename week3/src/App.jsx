@@ -10,12 +10,10 @@ const App = () => {
   const [score, setScore] = useState(0);
   let [maxScore, setMaxScore] = useState(5); // 기본 레벨을 'easy'로 설정
 
-  // 카드 데이터를 레벨에 따른 불린 및 위치를 무작위로 섞기
   const initializeCards = (pairsCount) => {
-    // 적절한 수의 카드 쌍 선택
-    const selectedCards = cardData.slice(0, pairsCount);
-    // 각 카드를 복제하여 짝을 만듭니다.
-    const doubledCards = [...selectedCards, ...selectedCards].map(
+    const shuffledCardData = shuffleArray([...cardData]);
+    const selectedCards = shuffledCardData.slice(0, pairsCount);
+    let doubledCards = [...selectedCards, ...selectedCards].map(
       (card, index) => ({
         ...card,
         id: index,
@@ -25,8 +23,7 @@ const App = () => {
       })
     );
 
-    // 카드의 위치를 무작위로 섞습니다.
-    doubledCards.sort(() => Math.random() - 0.5);
+    doubledCards = shuffleArray(doubledCards);
 
     return doubledCards;
   };
@@ -60,7 +57,13 @@ const App = () => {
 
   // 카드를 뒤집는 함수
   const flipCard = (id) => {
+    // 현재 두 카드가 이미 선택되었을 경우 (비교 중), 더 이상의 카드 선택을 방지
+    if (flippedCards.length === 2) {
+      return;
+    }
+
     const currentCard = cards.find((card) => card.id === id);
+    // 이미 뒤집히거나, 뒤집히는 중, 다시 뒤집히려고 하는 카드는 선택하지 않도록 함
     if (currentCard.flipped || currentCard.flipping || currentCard.unflipping)
       return;
 
@@ -82,8 +85,20 @@ const App = () => {
       const secondCard = cards.find((card) => card.id === secondCardId);
 
       if (firstCard.alt === secondCard.alt) {
-        setScore((prevScore) => prevScore + 1);
-        setFlippedCards([]);
+        setTimeout(() => {
+          // 카드가 뒤집는 애니메이션을 보여주고 나서 점수 업데이트
+          setScore((prevScore) => {
+            const updatedScore = prevScore + 1;
+
+            if (updatedScore === maxScore) {
+              // 업데이트 된 점수가 최대 점수와 같으면 모달 표시
+              setShowModal(true);
+            }
+
+            return updatedScore;
+          });
+          setFlippedCards([]);
+        }, 600);
       } else {
         setTimeout(() => {
           setCards((cards) =>
@@ -106,7 +121,7 @@ const App = () => {
         }, 600);
       }
     }
-  }, [flippedCards, cards]);
+  }, [flippedCards, cards, maxScore]);
 
   return (
     <AppWrapper>
@@ -121,7 +136,7 @@ const App = () => {
           <Card key={card.id} {...card} onClick={flipCard} />
         ))}
       </CardContainer>
-      {showModal && <Modal onClose={resetGame} />} {/* 게임 종료 모달 */}
+      {showModal && <Modal onClose={resetGame} />}
     </AppWrapper>
   );
 };

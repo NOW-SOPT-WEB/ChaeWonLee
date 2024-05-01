@@ -25,7 +25,7 @@ const HeaderWrapper = styled.header`
   align-items: center;
 
   padding-right: 2rem;
-  padding-left: 8rem;
+  padding-left: 3rem;
   top: 0;
 
   width: 100%;
@@ -59,4 +59,5 @@ const HeaderContainer = styled.div`
 const ResetButtonWrapper = styled.div`
   position: fixed;
   right: 2rem;
+  z-index: 3;
 `;

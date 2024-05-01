@@ -15,9 +15,9 @@ const VARIANTS = {
   `,
 };
 
-const Button = ({ onClick, variant, text }) => {
+const Button = ({ onClick, variant, text, isSelected }) => {
   return (
-    <StyledButton onClick={onClick} variant={variant}>
+    <StyledButton onClick={onClick} variant={variant} isSelected={isSelected}>
       {text}
     </StyledButton>
   );
@@ -42,6 +42,12 @@ const StyledButton = styled.button`
 
   color: var(--button-color);
   background-color: var(--button-bg-color);
+  ${({ isSelected }) =>
+    isSelected &&
+    css`
+      color: var(--button-hover-color);
+      background-color: var(--button-hover-bg-color);
+    `}
   &:hover {
     color: var(--button-hover-color);
     background-color: var(--button-hover-bg-color);

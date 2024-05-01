@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "./components/Button";
 import Header from "./components/Header";
@@ -33,9 +33,18 @@ const App = () => {
     maxScore,
   });
 
+  // 현재 선택된 레벨 상태 추가
+  const [selectedLevel, setSelectedLevel] = useState(initMaxScore);
+
   useEffect(() => {
     checkCardsMatch();
   }, [checkCardsMatch, flippedCards]);
+
+  // 레벨 버튼 클릭 이벤트 핸들러 수정
+  const handleLevelChange = (level) => {
+    setLevelAndReset(level);
+    setSelectedLevel(level); // 현재 선택된 레벨 상태를 설정
+  };
 
   return (
     <AppWrapper>
@@ -45,21 +54,17 @@ const App = () => {
         onReset={() => setLevelAndReset(maxScore)}
       />
       <LevelButtonsContainer>
-        <Button
-          onClick={() => setLevelAndReset(5)}
-          variant="level"
-          text="Easy"
-        />
-        <Button
-          onClick={() => setLevelAndReset(7)}
-          variant="level"
-          text="Normal"
-        />
-        <Button
-          onClick={() => setLevelAndReset(9)}
-          variant="level"
-          text="Hard"
-        />
+        {["5", "7", "9"].map((level) => (
+          <Button
+            key={level}
+            onClick={() => handleLevelChange(Number(level))}
+            variant="level"
+            text={`${
+              level === "5" ? "Easy" : level === "7" ? "Normal" : "Hard"
+            }`}
+            isSelected={selectedLevel === Number(level)} // 현재 선택된 레벨과 비교
+          />
+        ))}
       </LevelButtonsContainer>
       <CardContainer>
         {cards.map((card) => (

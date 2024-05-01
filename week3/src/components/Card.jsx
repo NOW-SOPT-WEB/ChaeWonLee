@@ -14,6 +14,7 @@ const Card = ({ id, src, alt, flipped, onClick }) => {
 
 export default Card;
 
+// 애니메이션
 const flipAnimation = keyframes`
     from {
         transform: rotateY(0deg);

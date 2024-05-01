@@ -1,3 +1,4 @@
+// 카드 랜덤
 export const shuffleArray = (array) => {
   let currentIndex = array.length,
     temporaryValue,

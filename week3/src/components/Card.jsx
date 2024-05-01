@@ -1,4 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
+import front from "../assets/img/clover.jpg";
 
 const Card = ({ id, src, alt, flipped, onClick, flipping, unflipping }) => {
   //console.log("카드", src);
@@ -9,7 +10,7 @@ const Card = ({ id, src, alt, flipped, onClick, flipping, unflipping }) => {
         flipping={flipping ? "true" : undefined}
         unflipping={unflipping ? "true" : undefined}
       >
-        <CardFront />
+        <CardFront src={front} alt="카드 앞면" />
         <CardBack src={src} alt={alt} />
       </CardFlipper>
     </CardWrapper>
@@ -37,8 +38,8 @@ const unflipAnimation = keyframes`
 `;
 
 const CardWrapper = styled.article`
-  width: 100px;
-  height: 150px;
+  width: 10rem;
+  height: 15rem;
 `;
 
 const CardFlipper = styled.div`
@@ -65,7 +66,7 @@ const CardFlipper = styled.div`
     `}
 `;
 
-const CardFrontBack = styled.div`
+const CardFrontBack = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -74,7 +75,7 @@ const CardFrontBack = styled.div`
 `;
 
 const CardFront = styled(CardFrontBack)`
-  background-color: black;
+  border-radius: 1.3rem;
 `;
 
 const CardBack = styled.img.attrs((props) => ({
@@ -84,6 +85,7 @@ const CardBack = styled.img.attrs((props) => ({
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 1.3rem;
   backface-visibility: hidden;
   transform: rotateY(180deg);
 `;

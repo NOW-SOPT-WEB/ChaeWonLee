@@ -7,25 +7,22 @@ import cardData from "./constants/cardData.js";
 
 const App = () => {
   const [score, setScore] = useState(0);
-  const [maxScore, setMaxScore] = useState(5); // 기본 레벨을 'easy'로 설정
+  let [maxScore, setMaxScore] = useState(5); // 기본 레벨을 'easy'로 설정
 
-  // 레벨 설정 함수
-  const setEasyLevel = () => setMaxScore(5);
-  const setNormalLevel = () => setMaxScore(7);
-  const setHardLevel = () => setMaxScore(9);
-
-  const resetGame = () => setScore(0);
-
-  // 카드 데이터를 두 배로 늘리고 위치를 무작위로 섞습니다.
-  const initializeCards = () => {
+  // 카드 데이터를 레벨에 따른 불린 및 위치를 무작위로 섞기
+  const initializeCards = (pairsCount) => {
+    // 적절한 수의 카드 쌍 선택
+    const selectedCards = cardData.slice(0, pairsCount);
     // 각 카드를 복제하여 짝을 만듭니다.
-    const doubledCards = [...cardData, ...cardData].map((card, index) => ({
-      ...card,
-      id: index,
-      flipped: false,
-      flipping: false,
-      unflipping: false,
-    }));
+    const doubledCards = [...selectedCards, ...selectedCards].map(
+      (card, index) => ({
+        ...card,
+        id: index,
+        flipped: false,
+        flipping: false,
+        unflipping: false,
+      })
+    );
 
     // 카드의 위치를 무작위로 섞습니다.
     doubledCards.sort(() => Math.random() - 0.5);
@@ -33,15 +30,28 @@ const App = () => {
     return doubledCards;
   };
 
-  const [cards, setCards] = useState(initializeCards());
+  const [cards, setCards] = useState(initializeCards(maxScore));
   const [flippedCards, setFlippedCards] = useState([]);
+
+  // 레벨 설정 및 게임 초기화 함수
+  const setLevelAndReset = (level) => {
+    setMaxScore(level);
+    setCards(initializeCards(level));
+    setScore(0);
+  };
+
+  const setEasyLevel = () => setLevelAndReset(5);
+  const setNormalLevel = () => setLevelAndReset(7);
+  const setHardLevel = () => setLevelAndReset(9);
+
+  // 게임 리셋
+  const resetGame = () => setLevelAndReset(maxScore);
 
   // 카드를 뒤집는 함수
   const flipCard = (id) => {
-    // 기존에 뒤집히거나 뒤집고 있는 카드, 혹은 다시 뒤집고 있는 카드는 무시합니다.
     const currentCard = cards.find((card) => card.id === id);
     if (currentCard.flipped || currentCard.flipping || currentCard.unflipping)
-      return; // 여기를 수정했습니다.
+      return;
 
     setCards((cards) =>
       cards.map((card) =>
@@ -51,7 +61,7 @@ const App = () => {
     setFlippedCards([...flippedCards, id]);
   };
 
-  // 매칭 로직: 두 카드를 뒤집었을 때
+  // 매칭 로직
   useEffect(() => {
     if (flippedCards.length === 2) {
       const firstCardId = flippedCards[0];
@@ -59,23 +69,16 @@ const App = () => {
 
       const firstCard = cards.find((card) => card.id === firstCardId);
       const secondCard = cards.find((card) => card.id === secondCardId);
+
       if (firstCard.alt === secondCard.alt) {
-        // 점수 업데이트 방식 변경
         setScore((prevScore) => prevScore + 1);
         setFlippedCards([]);
-        // 나머지 로직은 유지
       } else {
-        // 짝이 맞지 않을 경우 처리 로직 유지
         setTimeout(() => {
           setCards((cards) =>
             cards.map((card) =>
               flippedCards.includes(card.id)
-                ? {
-                    ...card,
-                    flipped: false,
-                    flipping: false,
-                    unflipping: true, // 여기서 unflipping 상태를 true로 설정
-                  }
+                ? { ...card, flipped: false, flipping: false, unflipping: true }
                 : card
             )
           );
@@ -83,14 +86,11 @@ const App = () => {
             setCards((cards) =>
               cards.map((card) =>
                 flippedCards.includes(card.id)
-                  ? {
-                      ...card,
-                      unflipping: false, // 애니메이션 후 unflipping 상태를 다시 false로 설정
-                    }
+                  ? { ...card, unflipping: false }
                   : card
               )
             );
-          }, 600); // unflipAnimation의 지속 시간과 동일
+          }, 600);
           setFlippedCards([]);
         }, 600);
       }
@@ -119,7 +119,7 @@ export default App;
 const AppWrapper = styled.main`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   background-color: ${({ theme }) => theme.colors.light_green};
 `;
 
@@ -127,12 +127,16 @@ const LevelButtonsContainer = styled.section`
   display: flex;
   justify-content: center;
   gap: 2rem;
-  padding-top: 11rem;
+  padding-top: 2rem;
 `;
 
 const CardContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
-  width: 600px;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-bottom: 5rem;
 `;

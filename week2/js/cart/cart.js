@@ -1,3 +1,5 @@
+import { SHOPPING_LIST } from "../common/listData.js";
+
 const modal = document.querySelector(".modal");
 const checkboxAll = document.querySelector('thead input[type="checkbox"]');
 
@@ -9,7 +11,6 @@ const openModal = () => {
   renderModalItems(selectedItems);
   modal.style.display = "block";
 };
-
 // 모달 닫기
 const closeModal = () => {
   modal.style.display = "none";
@@ -80,7 +81,7 @@ eventHandlers.forEach(({ selector, event, handler }) => {
 
 const createCartItemTemplate = (item) => `
     <tr>
-        <td class='td-input'><input type='checkbox'></td>
+        <td class='td-input'><input type='checkbox' value='${item.id}'></td>
         <td class='td-img'><img class='cart-img' src='${item.image}' alt='${
   item.title
 }'></td>
@@ -105,20 +106,21 @@ const formatPrice = (price) => {
 // 모달 아이템
 const renderModalItems = (selectedItems) => {
   const modalItems = document.querySelector(".modal-items");
+
   modalItems.innerHTML = "";
   let totalAmount = 0;
   let itemsHTML = "";
 
   selectedItems.forEach((input) => {
-    const tr = input.closest("tr");
-    const imgSrc = tr.querySelector(".cart-img").src;
-    const title = tr.querySelector(".td-title").textContent;
-    const price = parseInt(
-      tr
-        .querySelector(".td-charge")
-        .textContent.replace(/,/g, "")
-        .replace("원", "")
-    );
+    const itemId = input.value;
+    const item = SHOPPING_LIST.find((item) => item.id === itemId);
+    if (!item) {
+      return;
+    }
+
+    const imgSrc = item.image;
+    const title = item.title;
+    const price = item.price;
 
     totalAmount += price;
 
@@ -132,8 +134,6 @@ const renderModalItems = (selectedItems) => {
   });
 
   modalItems.innerHTML = itemsHTML;
-
-  // 총 금액을 표시하는 부분 업데이트
   const modalTop = document.querySelector(".modal-top h1");
   modalTop.textContent = `총 금액 : ${totalAmount.toLocaleString()}원`;
 };

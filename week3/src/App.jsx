@@ -6,9 +6,10 @@ import Card from "./components/Card";
 import Modal from "./components/Modal.jsx";
 import { useGameState } from "./hooks/useGameState";
 import { useCardFlip } from "./hooks/useCardFlip";
+import { LEVEL_EASY, LEVEL_NORMAL, LEVEL_HARD } from "./constants/levels";
 
 const App = () => {
-  const initMaxScore = 5; // easy 레벨로 시작
+  const initMaxScore = LEVEL_EASY; // easy 레벨로 시작
   const {
     score,
     maxScore,
@@ -54,13 +55,17 @@ const App = () => {
         onReset={() => setLevelAndReset(maxScore)}
       />
       <LevelButtonsContainer>
-        {["5", "7", "9"].map((level) => (
+        {[LEVEL_EASY, LEVEL_NORMAL, LEVEL_HARD].map((level) => (
           <Button
             key={level}
             onClick={() => handleLevelChange(Number(level))}
             variant="level"
             text={`${
-              level === "5" ? "Easy" : level === "7" ? "Normal" : "Hard"
+              level === LEVEL_EASY
+                ? "Easy"
+                : level === LEVEL_NORMAL
+                ? "Normal"
+                : "Hard"
             }`}
             isSelected={selectedLevel === Number(level)} // 현재 선택된 레벨과 비교
           />

@@ -6,7 +6,7 @@ import Card from "./components/Card";
 import Modal from "./components/Modal.jsx";
 import { useGameState } from "./hooks/useGameState";
 import { useCardFlip } from "./hooks/useCardFlip";
-import { LEVEL_EASY, LEVEL_NORMAL, LEVEL_HARD } from "./constants/levels";
+import { LEVEL_EASY, LEVEL_NORMAL, LEVEL_HARD } from "./constants/level.js";
 
 const App = () => {
   const initMaxScore = LEVEL_EASY; // easy 레벨로 시작

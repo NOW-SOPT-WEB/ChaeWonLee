@@ -4,7 +4,7 @@ import front from "../assets/img/clover.jpg";
 const Card = ({ id, src, alt, flipped, onClick }) => {
   return (
     <CardWrapper onClick={() => onClick(id)}>
-      <CardFlipper flipped={flipped && "true"}>
+      <CardFlipper flipped={flipped ? "true" : undefined}>
         <CardFront src={front} alt="카드 앞면" />
         <CardBack src={src} alt={alt} />
       </CardFlipper>

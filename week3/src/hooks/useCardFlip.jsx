@@ -25,7 +25,7 @@ export const useCardFlip = ({
     [cards, flippedCards, showModal, setCards, setFlippedCards]
   );
   // 두 뒤집힌 카드가 일치하는지 체크하는 함수 / 일치하면 점수를 올리고 최대 점수에 도달하면 모달을 보여줌
-  const checkCardsMatch = useCallback(() => {
+  const checkCardsMatch = () => {
     if (flippedCards.length === 2) {
       const [firstCardId, secondCardId] = flippedCards;
       const firstCard = cards.find((card) => card.id === firstCardId);
@@ -58,15 +58,7 @@ export const useCardFlip = ({
         }
       }, 600);
     }
-  }, [
-    cards,
-    flippedCards,
-    maxScore,
-    setCards,
-    setFlippedCards,
-    setScore,
-    setShowModal,
-  ]);
+  };
 
   return { flipCard, checkCardsMatch };
 };

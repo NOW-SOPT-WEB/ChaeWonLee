@@ -45,21 +45,8 @@ const CardFlipper = styled.div`
   object-fit: cover;
   transform-style: preserve-3d;
   transition: transform 0.6s;
-  ${({ flipped }) =>
-    flipped &&
-    css`
-      transform: rotateY(180deg);
-    `}
-  ${({ flipping }) =>
-    flipping &&
-    css`
-      animation: ${flipAnimation} 0.6s forwards;
-    `}
-    ${({ unflipping }) =>
-    unflipping &&
-    css`
-      animation: ${unflipAnimation} 0.6s forwards;
-    `}
+  transform: ${({ flipped }) => flipped && "rotateY(180deg)"};
+  animation: ${({ flipping }) => flipping && `${flipAnimation} 0.6s forwards`};
 `;
 
 const CardFrontBack = styled.img`

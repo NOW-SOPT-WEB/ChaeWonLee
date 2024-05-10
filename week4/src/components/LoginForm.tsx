@@ -35,7 +35,7 @@ const LoginForm = () => {
         labelText="ID"
         type="text"
         value={id.value}
-        onValueChange={id.onChange}
+        onChange={id.onChange}
         errorMessage={id.warningMsg}
         hasWarning={id.isWarn}
       />
@@ -44,12 +44,12 @@ const LoginForm = () => {
         labelText="비밀번호"
         type="password"
         value={pwd.value}
-        onValueChange={pwd.onChange}
+        onChange={pwd.onChange}
         errorMessage={pwd.warningMsg}
         hasWarning={pwd.isWarn}
       />
       <Button text="로그인" onClick={handleLogin} />
-      <Button text="회원가입" link="/register" />
+      <Button text="회원가입" link="/join" />
     </>
   );
 };

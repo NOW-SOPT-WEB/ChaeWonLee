@@ -1,4 +1,6 @@
-import styled from "styled-components";
+// InputField.js
+import React from "react";
+import styled, { css } from "styled-components";
 
 type InputProps = {
   labelText: string;
@@ -6,9 +8,11 @@ type InputProps = {
   value: string;
   errorMessage?: string;
   hasWarning?: boolean;
-  onValueChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   maxLength?: number;
   inputRef?: React.MutableRefObject<HTMLInputElement> | React.MutableRefObject<null>;
+  isError?: boolean;
+  infoMessage?: string;
 };
 
 const InputField = ({
@@ -17,21 +21,32 @@ const InputField = ({
   value,
   errorMessage,
   hasWarning = false,
-  onValueChange,
+  onChange,
   maxLength,
   inputRef,
+  isError = false,
+  infoMessage,
 }: InputProps) => {
   return (
     <FieldWrapper>
       <Label>{labelText}</Label>
       <FieldContainer>
-        <StyledInput type={type} value={value} onChange={onValueChange} maxLength={maxLength} ref={inputRef} />
+        <StyledInput
+          type={type}
+          value={value}
+          onChange={onChange}
+          maxLength={maxLength}
+          ref={inputRef}
+          isError={isError} // 추가됨
+        />
         {errorMessage && hasWarning && <WarningMessage>{errorMessage}</WarningMessage>}
+        {infoMessage && <InfoMessage>{infoMessage}</InfoMessage>}
       </FieldContainer>
     </FieldWrapper>
   );
 };
 
+// Styled Components
 const FieldWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -45,24 +60,38 @@ const FieldContainer = styled.div`
 `;
 
 const Label = styled.label`
-  width: 6.5rem;
-  text-align: right;
   font-size: 1rem;
-  font-weight: 600;
+  color: #333;
 `;
 
-const StyledInput = styled.input`
-  width: 100%;
-  height: 1.4rem;
-  border-radius: 3rem;
-  border: solid 1px black;
+const StyledInput = styled.input<{ isError?: boolean }>`
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  &:focus {
+    border-color: #007bff;
+  }
+
+  ${(props) =>
+    props.isError &&
+    css`
+      border-color: #dc3545; // 오류가 있을 경우 테두리 색상 변경
+      &:focus {
+        border-color: #dc3545;
+      }
+    `}
 `;
 
-const WarningMessage = styled.p`
-  padding: 0.2rem;
-  color: red;
+const WarningMessage = styled.span`
+  color: #dc3545;
   font-size: 0.8rem;
-  word-break: keep-all;
+  margin-top: 0.25rem;
+`;
+
+const InfoMessage = styled.span`
+  color: #17a2b8;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
 `;
 
 export default InputField;

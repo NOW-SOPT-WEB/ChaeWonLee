@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import InputField from "../components/InputField"; // Assumed path
 import CommonBtn from "../components/Button"; // Assumed path
 import { joinUser } from "../apis/joinUser"; // Assumed path

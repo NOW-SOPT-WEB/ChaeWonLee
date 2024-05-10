@@ -1,4 +1,3 @@
-// axiosInstance와 axios 모두 import
 import axiosInstance from "./axiosInstance";
 import axios from "axios";
 

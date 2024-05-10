@@ -133,14 +133,14 @@ const JoinForm = () => {
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   gap: 2rem;
 `;
 
 const BtnWrapper = styled.div`
   display: flex;
-  gap: 0.5rem;
-  margin-top: 3rem;
+  gap: 1rem;
+  margin-top: 3.5rem;
 `;
 
 export default JoinForm;

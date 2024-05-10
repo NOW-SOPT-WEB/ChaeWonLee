@@ -36,7 +36,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  background-color: ${({ theme }) => theme.colors.sky};
 `;
 
 const VideoContainer = styled.div`

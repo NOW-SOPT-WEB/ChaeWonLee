@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import useInput from "../hooks/useInput";
 import InputField from "./InputField";
 import Button from "./Button";
@@ -31,7 +32,8 @@ const LoginForm = () => {
 
   return (
     <>
-      <InputField
+    <InputContainer>
+    <InputField
         labelText="ID"
         type="text"
         value={id.value}
@@ -48,10 +50,27 @@ const LoginForm = () => {
         errorMessage={pwd.warningMsg}
         hasWarning={pwd.isWarn}
       />
+    </InputContainer>
+      <BtnWrapper>
       <Button text="로그인" onClick={handleLogin} />
       <Button text="회원가입" link="/join" />
+      </BtnWrapper>
     </>
   );
 };
 
 export default LoginForm;
+
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  gap: 2rem;
+`;
+
+const BtnWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 3.5rem;
+`;

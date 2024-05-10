@@ -15,5 +15,4 @@ export default Join;
 
 const Title = styled.h1`
   font-size: 2rem;
-  font-weight: 600;
 `;

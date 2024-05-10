@@ -1,9 +1,11 @@
 const theme = {
   colors: {
-    primary: "#0070f3",
-    background: "#ffffff",
-    text: "#333333",
-    // 추가 색상 정의
+    sky: "#DEF3FF",
+    blue: "#006BA7",
+    black: "#000000",
+    white: "#FFFFFF",
+    red : "#FF0000",
+    gray: "#B7B7B7"
   },
 };
 

@@ -35,10 +35,10 @@ const StyledButton = styled.button`
   align-items: center;
 
   padding: 0.5rem;
-  background-color: black;
-  color: white;
-  font-weight: 600;
+  background-color: ${({ theme }) => theme.colors.blue};
+  color: ${({ theme }) => theme.colors.white};
   border-radius: 3rem;
+  border: none;
 `;
 
 export default Button;

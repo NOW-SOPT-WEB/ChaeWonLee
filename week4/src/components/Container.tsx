@@ -15,7 +15,7 @@ const Background = styled.div`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: ${({ theme }) => theme.colors.sky};
 `;
 
 const BackgroundContent = styled.div`
@@ -27,9 +27,8 @@ const BackgroundContent = styled.div`
   align-items: center;
 
   padding: 4rem;
-  background-color: white;
-  border-radius: 10px;
-  border: solid 2px black;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 3rem;
 `;
 
 export default Container;

@@ -15,13 +15,11 @@ const Login = () => {
 
 const LoginTitle = styled.h1`
   font-size: 2rem;
-  font-weight: 600;
 `;
 const LoginImg = styled.img`
-  width: 8rem;
-  height: 7rem;
-  margin-top: 1rem;
-  margin-bottom: 3rem;
+  width: 10rem;
+  height: 8rem;
+  margin-top: 1.5rem;
 `;
 
 export default Login;

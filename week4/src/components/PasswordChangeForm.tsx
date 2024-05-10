@@ -63,10 +63,11 @@ const ChangePwdContainer = styled.div`
   align-items: center;
   margin-bottom: 2rem;
 `;
+
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   gap: 2rem;
 `;

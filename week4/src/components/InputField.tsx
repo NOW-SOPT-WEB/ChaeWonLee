@@ -49,48 +49,49 @@ const InputField = ({
 const FieldWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
 `;
 
 const FieldContainer = styled.div`
-  width: 14rem;
+  width: 15rem;
   display: flex;
   flex-direction: column;
 `;
 
 const Label = styled.label`
   font-size: 1rem;
-  color: #333;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const StyledInput = styled.input<{ isError?: boolean }>`
   padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 0.1rem solid ${({ theme }) => theme.colors.gray};
+  border-radius: 0.5rem;
   &:focus {
-    border-color: #007bff;
+    border-color: ${({ theme }) => theme.colors.blue};
   }
 
   ${(props) =>
     props.isError &&
     css`
-      border-color: #dc3545; 
+      border-color: ${({ theme }) => theme.colors.red};
       &:focus {
-        border-color: #dc3545;
+        border-color: ${({ theme }) => theme.colors.red};
       }
     `}
 `;
 
 const WarningMessage = styled.span`
-  color: #dc3545;
-  font-size: 0.8rem;
+  color: ${({ theme }) => theme.colors.red};;
+  font-size: 0.7rem;
   margin-top: 0.25rem;
 `;
 
 const InfoMessage = styled.span`
-  color: #17a2b8;
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
+  color: ${({ theme }) => theme.colors.blue};
+  font-size: 0.7rem;
+  margin-top: 0.4rem;
 `;
 
 export default InputField;

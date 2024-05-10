@@ -1,7 +1,7 @@
 import axiosInstance from "./axiosInstance";
 import axios from "axios";
 
-export interface JoinType {
+interface JoinType {
   authenticationId: string;
   password: string;
   nickname: string;

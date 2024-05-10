@@ -19,16 +19,15 @@ const Background = styled.div`
 `;
 
 const BackgroundContent = styled.div`
+  padding: 4rem;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 3rem;
   display: flex;
   width: auto;
   height: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  padding: 4rem;
-  background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 3rem;
 `;
 
 export default Container;

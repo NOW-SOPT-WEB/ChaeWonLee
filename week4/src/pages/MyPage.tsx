@@ -76,25 +76,29 @@ const Title = styled.h1`
 const DetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
   gap:1rem;
+
+  margin-top: 3rem;
 `;
 
 const Detail = styled.div`
   display: flex;
-  width: 20rem;
   justify-content: space-between;
+
+  width: 20rem;
 `;
 
 const ToggleBtn = styled.div`
   display: flex;
+
   width: auto;
   height: auto;
-  padding: 1rem;
   margin: 1rem;
-  background-color: #eeeeee;
-  border-radius: 2rem;
   margin-top: 3rem;
+  padding: 1rem;
+  border-radius: 2rem;
+
+  background-color: #eee;
 `;
 const Icon = styled.img<{ active: boolean }>`
   width: 1rem;

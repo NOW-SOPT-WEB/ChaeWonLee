@@ -21,7 +21,7 @@ const JoinForm = () => {
   }));
 
   const nickName = useInput("", (value) => ({
-    isValid: value.length > 2,
+    isValid: value.length > 0,
     message: "닉네임을 입력하세요",
   }));
 
@@ -43,7 +43,7 @@ const JoinForm = () => {
       if (pwd.value.length === 0) {
         alert("비밀번호를 입력해주세요.");
       } else {
-        alert("비밀번호가 형식에 맞지 않습니다. 비밀번호를 확인해주세요.");
+        alert("비밀번호가 형식(최소 8글자 이상, 숫자, 문자(a-z, A-Z), 특수문자 포함)에 맞지 않습니다.");
       }
       return;
     }
@@ -55,7 +55,7 @@ const JoinForm = () => {
       if (phone.value.length === 0) {
         alert("전화번호를 입력해주세요.");
       } else {
-        alert("전화번호가 올바르지 않습니다. 전화번호를 확인해주세요.");
+        alert("전화번호가 형식(010-****-****)에 맞지 않습니다.");
       }
       return;
     }
@@ -117,7 +117,7 @@ const JoinForm = () => {
           //errorMessage={phone.isWarn ? phone.warningMsg : undefined}
           hasWarning={phone.isWarn}
           onChange={phone.onChange}
-          maxLength={13}
+          //maxLength={13}
           isError={phone.isWarn && !phone.isValid}
           infoMessage="전화번호 형식: 010-1234-5678"
         />
@@ -133,13 +133,15 @@ const JoinForm = () => {
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 2.5rem;
   gap: 2rem;
+
+  margin-top: 2.5rem;
 `;
 
 const BtnWrapper = styled.div`
   display: flex;
   gap: 1rem;
+
   margin-top: 3.5rem;
 `;
 

@@ -29,16 +29,18 @@ const Button = ({ text, link, onClick }: ButtonProps) => {
 
 const StyledButton = styled.button`
   display: flex;
-  width: 7rem;
-  height: 2.5rem;
   justify-content: center;
   align-items: center;
 
+  width: 7rem;
+  height: 2.5rem;
   padding: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.blue};
-  color: ${({ theme }) => theme.colors.white};
-  border-radius: 3rem;
   border: none;
+  border-radius: 3rem;
+
+  background-color: ${({ theme }) => theme.colors.blue};
+
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export default Button;

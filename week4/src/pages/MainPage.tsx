@@ -30,18 +30,21 @@ const MainPage = () => {
 
 const MainContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+
   background-color: ${({ theme }) => theme.colors.sky};
 `;
 
 const VideoContainer = styled.div`
   width: 40rem;
   height: 30rem;
+
   .video-react-video {
     width: 100%;
     height: 100%;

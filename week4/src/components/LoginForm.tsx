@@ -65,12 +65,14 @@ export default LoginForm;
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 3rem;
   gap: 2rem;
+
+  margin-top: 3rem;
 `;
 
 const BtnWrapper = styled.div`
   display: flex;
   gap: 1rem;
+
   margin-top: 3.5rem;
 `;

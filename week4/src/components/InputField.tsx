@@ -48,26 +48,28 @@ const InputField = ({
 
 const FieldWrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 1rem;
+  justify-content: center;
+  align-items: center;
 `;
 
 const FieldContainer = styled.div`
-  width: 15rem;
   display: flex;
   flex-direction: column;
+
+  width: 15rem;
 `;
 
 const Label = styled.label`
-  font-size: 1rem;
   color: ${({ theme }) => theme.colors.black};
+  font-size: 1rem;
 `;
 
 const StyledInput = styled.input<{ isError?: boolean }>`
   padding: 0.5rem;
   border: 0.1rem solid ${({ theme }) => theme.colors.gray};
   border-radius: 0.5rem;
+
   &:focus {
     border-color: ${({ theme }) => theme.colors.blue};
   }
@@ -76,6 +78,7 @@ const StyledInput = styled.input<{ isError?: boolean }>`
     props.isError &&
     css`
       border-color: ${({ theme }) => theme.colors.red};
+
       &:focus {
         border-color: ${({ theme }) => theme.colors.red};
       }
@@ -83,15 +86,17 @@ const StyledInput = styled.input<{ isError?: boolean }>`
 `;
 
 const WarningMessage = styled.span`
+  margin-top: 0.25rem;
+
   color: ${({ theme }) => theme.colors.red};;
   font-size: 0.7rem;
-  margin-top: 0.25rem;
 `;
 
 const InfoMessage = styled.span`
+  margin-top: 0.4rem;
+
   color: ${({ theme }) => theme.colors.blue};
   font-size: 0.7rem;
-  margin-top: 0.4rem;
 `;
 
 export default InputField;

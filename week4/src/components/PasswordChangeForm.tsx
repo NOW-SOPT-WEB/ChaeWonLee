@@ -25,7 +25,7 @@ const PasswordChangeForm = ({ memberId }: Props) => {
     const response = await changePwd(payload, memberId);
     if (response) {
       alert(response.data.message);
-      navigate("/");
+      navigate(`/mainpage/${memberId}`);
     }
   };
 
@@ -34,16 +34,25 @@ const PasswordChangeForm = ({ memberId }: Props) => {
       console.error("Member ID is missing.");
       return false;
     }
-    if (!currentPwd || !newPwd || !confirmNewPwd) {
-      alert("모든 필드를 채워주세요.");
+    if (!currentPwd) {
+      alert("기존 비밀번호를 입력해주세요.");
+      return false;
+    }
+    if (!newPwd) {
+      alert("새로운 비밀번호를 입력해주세요.");
+      return false;
+    }
+    if (!confirmNewPwd) {
+      alert("새로운 비밀번호 확인란을 입력해주세요.");
       return false;
     }
     if (newPwd !== confirmNewPwd) {
-      alert("새 비밀번호가 일치하지 않습니다.");
+      alert("입력한 두 비밀번호가 동일하지 않습니다.");
       return false;
     }
     return true;
   };
+  
   return (
     <ChangePwdContainer>
       <InputContainer>
@@ -61,13 +70,15 @@ const ChangePwdContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   margin-bottom: 2rem;
 `;
 
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 2rem;
+
   margin-top: 2rem;
   margin-bottom: 2rem;
-  gap: 2rem;
 `;

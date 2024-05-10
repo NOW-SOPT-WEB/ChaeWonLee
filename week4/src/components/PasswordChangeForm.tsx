@@ -1,19 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
+import InputField from "./InputField"; // 이름을 InputModule에서 InputField로 변경했습니다.
+import CommonBtn from "./Button";
+import { changePwd } from "../apis/changePwd";
 import { styled } from "styled-components";
-import InputModule from "../components/InputField";
-import CommonBtn from "../components/Button";
-import { memberChangePwd } from "../apis/memberChangePwd";
 
 type Props = {
   memberId: string;
 };
 
-const PasswordChange = ({ memberId }: Props) => {
+const PasswordChangeForm = ({ memberId }: Props) => {
   const navigate = useNavigate();
-  const [currentPwd, setCurrentPwd] = useInput("");
-  const [newPwd, setNewPwd] = useInput("");
-  const [confirmNewPwd, setConfirmNewPwd] = useInput("");
+  const { value: currentPwd, onChange: setCurrentPwd } = useInput("");
+  const { value: newPwd, onChange: setNewPwd } = useInput("");
+  const { value: confirmNewPwd, onChange: setConfirmNewPwd } = useInput("");
 
   // 비밀번호 변경 로직
   const changePassword = async () => {
@@ -21,9 +21,9 @@ const PasswordChange = ({ memberId }: Props) => {
     const payload = {
       previousPassword: currentPwd,
       newPassword: newPwd,
-      confirmPassword: confirmNewPwd,
+      newPasswordVerification: confirmNewPwd,
     };
-    const response = await memberChangePwd(payload, memberId);
+    const response = await changePwd(payload, memberId);
     if (response) {
       alert(response.data.message);
       navigate("/");
@@ -50,19 +50,16 @@ const PasswordChange = ({ memberId }: Props) => {
   return (
     <ChangePwdContainer>
       <InputContainer>
-        <InputModule labelTxt={PWDCHANGELABEL.prevPwd} inputType="password" val={currentPwd} onChange={setCurrentPwd} />
-        <InputModule labelTxt={PWDCHANGELABEL.newPwd} inputType="password" val={newPwd} onChange={setNewPwd} />
-        <InputModule
-          labelTxt={PWDCHANGELABEL.checkNewPwd}
-          inputType="password"
-          val={confirmNewPwd}
-          onChange={setConfirmNewPwd}
-        />
+        <InputField labelText="기존 비밀번호" type="password" value={currentPwd} onChange={setCurrentPwd} />
+        <InputField labelText="새로운 비밀번호" type="password" value={newPwd} onChange={setNewPwd} />
+        <InputField labelText="비밀번호 확인" type="password" value={confirmNewPwd} onChange={setConfirmNewPwd} />
       </InputContainer>
-      <CommonBtn text={BTNTXT.changePwd} onClick={changePassword} />
+      <CommonBtn text="비밀번호 변경하기" onClick={changePassword} />
     </ChangePwdContainer>
   );
 };
+
+export default PasswordChangeForm;
 
 const ChangePwdContainer = styled.div`
   display: flex;
@@ -77,5 +74,3 @@ const InputContainer = styled.div`
   margin-bottom: 3rem;
   gap: 2rem;
 `;
-
-export default PasswordChange;

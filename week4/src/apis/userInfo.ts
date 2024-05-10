@@ -1,7 +1,7 @@
 import axiosInstance from "./axiosInstance"; // Axios 인스턴스
 import axios from "axios";
 
-export const memberInfo = async (memberId: string) => {
+export const userInfo = async (memberId: string) => {
   try {
     const res = await axiosInstance.get("/member/info", {
       headers: {

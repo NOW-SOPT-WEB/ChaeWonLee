@@ -25,7 +25,7 @@ const LoginForm = () => {
     const data = { authenticationId: id.value, password: pwd.value };
     const res = await loginUser(data);
     if (res && confirm(res?.data.message)) {
-      navigate(`/main/${res.headers.location}`);
+      navigate(`/mainpage/${res.headers.location}`);
     }
   };
 

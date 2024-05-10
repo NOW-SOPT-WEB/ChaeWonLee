@@ -3,11 +3,15 @@ import Modal from "../components/Container"; // ModalLayout을 Modal로 변경
 import Button from "../components/Button"; // CommonBtn을 Button으로 변경
 import PasswordUpdate from "../components/PasswordChangeForm"; // ChangePwd를 PasswordUpdate로 변경
 import { useEffect, useState } from "react";
-import { getUserInfo } from "../apis/memberInfo"; // memberInfo를 getUserInfo로 변경
-import { UserType } from "../types"; // InfoType을 UserType으로 변경
+import { userInfo } from "../apis/userInfo"; // memberInfo를 getUserInfo로 변경
 import { useParams } from "react-router-dom";
-import toggleIcon from "../assets/icons/toggleIco.svg"; // toggleIco를 toggleIcon으로 변경
-import { BUTTON_TEXT, USER_INFO_LABELS } from "../constants/messages"; // BTNTXT, INFORMATION을 BUTTON_TEXT, USER_INFO_LABELS로 변경
+import toggleIcon from "../assets/img/toggle.png"; // toggleIco를 toggleIcon으로 변경
+
+export interface UserType {
+  authenticationId: string;
+  nickname: string;
+  phone: string;
+}
 
 const UserProfile = () => {
   // Mypage를 UserProfile로 변경
@@ -31,8 +35,8 @@ const UserProfile = () => {
   const fetchUserInfo = async () => {
     // getMemberInfo를 fetchUserInfo로 변경
     if (userId) {
-      const userInfo = await getUserInfo(userId);
-      setUserDetails(userInfo);
+      const info = await userInfo(userId);
+      setUserDetails(info);
     }
   };
 
@@ -45,25 +49,25 @@ const UserProfile = () => {
       <Title>마이페이지</Title>
       <DetailsWrapper>
         <Detail>
-          <p>{USER_INFO_LABELS.id}</p>
+          <p>ID</p>
           <p>{userDetails.authenticationId}</p>
         </Detail>
         <Detail>
-          <p>{USER_INFO_LABELS.nickname}</p>
+          <p>닉네임</p>
           <p>{userDetails.nickname}</p>
         </Detail>
         <Detail>
-          <p>{USER_INFO_LABELS.phone}</p>
+          <p>전화번호</p>
           <p>{userDetails.phone}</p>
         </Detail>
       </DetailsWrapper>
       <ToggleBtn onClick={handleTogglePwdChange}>
-        <p>{BUTTON_TEXT.changePwd}</p>
+        <p>비밀번호 변경하기</p>
         <Icon src={toggleIcon} active={isPwdChangeVisible} />
       </ToggleBtn>
       {isPwdChangeVisible && <PasswordUpdate memberId={userId ? userId : ""} />}
 
-      <Button text={BUTTON_TEXT.home} link={`/main/${userId}`} />
+      <Button text="홈으로" link={`/mainpage/${userId}`} />
     </Modal>
   );
 };

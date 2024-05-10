@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import Modal from "../components/Container"; // ModalLayout을 Modal로 변경
-import Button from "../components/Button"; // CommonBtn을 Button으로 변경
-import PasswordUpdate from "../components/PasswordChangeForm"; // ChangePwd를 PasswordUpdate로 변경
+import Modal from "../components/Container"; 
+import Button from "../components/Button"; 
+import PasswordUpdate from "../components/PasswordChangeForm"; 
 import { useEffect, useState } from "react";
-import { userInfo } from "../apis/userInfo"; // memberInfo를 getUserInfo로 변경
+import { userInfo } from "../apis/userInfo"; 
 import { useParams } from "react-router-dom";
-import toggleIcon from "../assets/img/toggle.png"; // toggleIco를 toggleIcon으로 변경
+import toggleIcon from "../assets/img/toggle.png"; 
 
 export interface UserType {
   authenticationId: string;
@@ -14,26 +14,22 @@ export interface UserType {
 }
 
 const UserProfile = () => {
-  // Mypage를 UserProfile로 변경
-  const userId = useParams().id; // memberId를 userId로 변경
+  const userId = useParams().id; 
   const initialUserInfo = {
-    // dummyInfo를 initialUserInfo로 변경
     authenticationId: "",
     nickname: "",
     phone: "",
   };
-  const [userDetails, setUserDetails] = useState<UserType>(initialUserInfo); // userInfo, setUserInfo를 userDetails, setUserDetails로 변경
+  const [userDetails, setUserDetails] = useState<UserType>(initialUserInfo);
 
   // 비밀번호 변경 토글
-  const [isPwdChangeVisible, setIsPwdChangeVisible] = useState(false); // openPwdChange, setOpenPwdChange를 isPwdChangeVisible, setIsPwdChangeVisible로 변경
+  const [isPwdChangeVisible, setIsPwdChangeVisible] = useState(false);
   const handleTogglePwdChange = () => {
-    // toggleOpenPwdChange를 handleTogglePwdChange로 변경
     setIsPwdChangeVisible((prev) => !prev);
   };
 
-  /** 사용자 정보 가져오기 */
+  // 사용자 정보 가져오기 
   const fetchUserInfo = async () => {
-    // getMemberInfo를 fetchUserInfo로 변경
     if (userId) {
       const info = await userInfo(userId);
       setUserDetails(info);

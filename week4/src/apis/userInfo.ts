@@ -1,4 +1,4 @@
-import axiosInstance from "./axiosInstance"; // Axios 인스턴스
+import axiosInstance from "./axiosInstance"; 
 import axios from "axios";
 
 export const userInfo = async (memberId: string) => {

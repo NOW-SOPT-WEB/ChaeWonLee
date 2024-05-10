@@ -13,7 +13,6 @@ const useInput = (
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let inputValue = e.target.value;
 
-    // formatter가 제공되면 입력값에 대해 형식을 적용
     if (formatter) {
       inputValue = formatter(inputValue);
     }

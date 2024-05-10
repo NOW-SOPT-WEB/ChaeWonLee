@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useInput from "../hooks/useInput";
-import InputField from "../components/InputField"; // 이름을 InputModule에서 InputField로 변경했습니다.
+import InputField from "../components/InputField"; 
 import CommonBtn from "../components/Button";
 import { changePwd } from "../apis/changePwd";
 import { styled } from "styled-components";
@@ -14,7 +14,7 @@ const PasswordChangeForm = ({ memberId }: Props) => {
   const { value: currentPwd, onChange: setCurrentPwd } = useInput("");
   const { value: newPwd, onChange: setNewPwd } = useInput("");
   const { value: confirmNewPwd, onChange: setConfirmNewPwd } = useInput("");
-  // 비밀번호 변경 로직
+
   const changePassword = async () => {
     if (!validateInputs()) return;
     const payload = {
@@ -28,7 +28,7 @@ const PasswordChangeForm = ({ memberId }: Props) => {
       navigate("/");
     }
   };
-  // 입력값 유효성 검사
+
   const validateInputs = () => {
     if (!memberId) {
       console.error("Member ID is missing.");

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import InputField from "../components/InputField"; // Assumed path
-import CommonBtn from "../components/Button"; // Assumed path
-import { joinUser } from "../apis/joinUser"; // Assumed path
+import InputField from "../components/InputField";
+import CommonBtn from "../components/Button"; 
+import { joinUser } from "../apis/joinUser";
 import { useNavigate } from "react-router-dom";
-import useInput from "../hooks/useInput"; // Assumed path
-import { validatePassword, validatePhone, formatPhoneNumber } from "../utils/validate"; // Assumed utility functions
+import useInput from "../hooks/useInput"; 
+import { validatePassword, validatePhone, formatPhoneNumber } from "../utils/validate"; 
 import axios from "axios";
 
 const JoinForm = () => {
@@ -35,7 +35,6 @@ const JoinForm = () => {
   );
 
   const handleJoin = async () => {
-    // 각 입력값의 유효성 검사 및 경고 메시지 처리
     if (id.isWarn) {
       alert("아이디를 입력해주세요.");
       return;
@@ -73,10 +72,8 @@ const JoinForm = () => {
       if (res && confirm(res.data.message)) navigate("/");
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        // error는 이제 AxiosError 타입으로 추론됩니다.
         alert(error.response?.data.message);
       } else {
-        // axios 오류가 아닌 경우를 처리
         console.error("Unexpected error:", error);
       }
     }
@@ -133,7 +130,6 @@ const JoinForm = () => {
   );
 };
 
-// Styled Components
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -147,5 +143,4 @@ const BtnWrapper = styled.div`
   margin-top: 3rem;
 `;
 
-// Export default JoinForm at the end of file
 export default JoinForm;

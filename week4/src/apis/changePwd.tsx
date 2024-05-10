@@ -7,7 +7,6 @@ interface ChangePwdType {
   newPasswordVerification: string;
 }
 
-/** 비밀번호 변경 */
 export const changePwd = async (props: ChangePwdType, memberId: string) => {
   try {
     const res = await axiosInstance.patch("/member/password", props, {

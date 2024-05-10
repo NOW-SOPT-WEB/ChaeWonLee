@@ -1,7 +1,6 @@
 import axiosInstance from "./axiosInstance";
 import axios from "axios";
 
-// 타입 정의
 interface ILoginDetails {
   authenticationId: string;
   password: string;

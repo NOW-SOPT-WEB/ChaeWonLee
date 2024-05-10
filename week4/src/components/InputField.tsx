@@ -37,7 +37,7 @@ const InputField = ({
           onChange={onChange}
           maxLength={maxLength}
           ref={inputRef}
-          isError={isError} // 추가됨
+          isError={isError} 
         />
         {errorMessage && hasWarning && <WarningMessage>{errorMessage}</WarningMessage>}
         {infoMessage && <InfoMessage>{infoMessage}</InfoMessage>}
@@ -46,7 +46,6 @@ const InputField = ({
   );
 };
 
-// Styled Components
 const FieldWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -75,7 +74,7 @@ const StyledInput = styled.input<{ isError?: boolean }>`
   ${(props) =>
     props.isError &&
     css`
-      border-color: #dc3545; // 오류가 있을 경우 테두리 색상 변경
+      border-color: #dc3545; 
       &:focus {
         border-color: #dc3545;
       }
